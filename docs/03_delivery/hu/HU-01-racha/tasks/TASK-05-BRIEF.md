@@ -47,6 +47,20 @@
 > Lo no obvio y duradero, en un bloque `APRENDIZAJE` al final del informe.
 
 ## 7. Resultado de la integración
-> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: -.
+> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: 0/2.
 
-_Pendiente de implementar._
+```
+$ npm test -w apps/api -- attendance/streak-adversarial.test
+ Test Files  1 passed (1)
+      Tests  10 passed (10)
+
+$ npm run typecheck
+(exit 0)
+
+$ npx eslint apps/api/test/attendance/streak-adversarial.test.ts
+(exit 0, sin salida)
+```
+
+- **Resultado:** verde, sin ciclos de arreglo (0/2). Ningún caso adversarial rompió el código.
+- **Commit:** el de esta task, `test(api): adversarial streak cases [HU-01 TASK-05]`.
+- **APRENDIZAJE:** para simular un fallo de lectura sin mocks basta renombrar la tabla (`ALTER TABLE … RENAME`): `failWrites` solo rompe escrituras.
