@@ -26,7 +26,7 @@ Es la práctica del curso.
 - **Origen:** FEAT-02 · **Depende de:** HU-01 (en `main`) · **Rama:** `hu/HU-02-congelar-racha`
 - [x] prd-writer
 - [x] tech-design
-- [ ] task-planner
+- [x] task-planner
 - [ ] implementar-hu
 - [ ] reviewer
 - [ ] merge a main
