@@ -22,9 +22,9 @@ Es la práctica del curso.
 
 ## Historias de usuario
 
-### HU-02 · Congelar mi racha · estado: pendiente
+### HU-02 · Congelar mi racha · estado: en curso
 - **Origen:** FEAT-02 · **Depende de:** HU-01 (en `main`) · **Rama:** `hu/HU-02-congelar-racha`
-- [ ] prd-writer
+- [x] prd-writer
 - [ ] tech-design
 - [ ] task-planner
 - [ ] implementar-hu

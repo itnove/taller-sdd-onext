@@ -57,10 +57,10 @@ Escribe los días que el socio no vendrá (ejecución del contrato, [RGPD.md](..
 ## Trazabilidad
 | Flujo | HU | Criterio de aceptación (PRD) | Test |
 |---|---|---|---|
-| P | HU-02 | | |
-| A1 | HU-02 | | |
-| E1 | HU-02 | | |
-| E2 | HU-02 | | |
-| E3 | HU-02 | | |
+| P | HU-02 | CA-04 | |
+| A1 | HU-02 | CA-02 | |
+| E1 | HU-02 | CA-01 | |
+| E2 | HU-02 | CA-02 | |
+| E3 | HU-02 | CA-03 | |
 
 _La rellenan `/prd-writer` (CA), `/reviewer` (test) y `/module-sync` (al cerrar). Un flujo sin test es un hallazgo._

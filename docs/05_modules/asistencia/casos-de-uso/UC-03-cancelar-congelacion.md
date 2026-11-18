@@ -50,7 +50,7 @@ Marca cuándo se canceló. Las canceladas se conservan mientras sea socio ([RGPD
 ## Trazabilidad
 | Flujo | HU | Criterio de aceptación (PRD) | Test |
 |---|---|---|---|
-| P | HU-02 | | |
-| E1 | HU-02 | | |
+| P | HU-02 | CA-07 | |
+| E1 | HU-02 | CA-08 | |
 
 _La rellenan `/prd-writer` (CA), `/reviewer` (test) y `/module-sync` (al cerrar). Un flujo sin test es un hallazgo._
