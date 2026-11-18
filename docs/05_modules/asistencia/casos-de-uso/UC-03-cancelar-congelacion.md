@@ -50,7 +50,7 @@ Marca cuándo se canceló. Las canceladas se conservan mientras sea socio ([RGPD
 ## Trazabilidad
 | Flujo | HU | Criterio de aceptación (PRD) | Test |
 |---|---|---|---|
-| P | HU-02 | CA-07 | |
-| E1 | HU-02 | CA-08 | |
+| P | HU-02 | CA-07 | `apps/api/test/attendance/freeze-cancel.test.ts:31`, `e2e/freeze.spec.ts:40` |
+| E1 | HU-02 | CA-08 | `apps/api/test/attendance/freeze-cancel.test.ts:59` |
 
 _La rellenan `/prd-writer` (CA), `/reviewer` (test) y `/module-sync` (al cerrar). Un flujo sin test es un hallazgo._

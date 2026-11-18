@@ -1,15 +1,15 @@
 # Review: HU-02 Congelar mi racha
 
 ## 1. Resumen ejecutivo
-- **Fecha:** 2026-11-18 · **Rama:** `hu/HU-02-congelar-racha` · **Commits revisados:** `4e4066b..85f03e0` (11)
+- **Fecha:** 2026-11-18 · **Rama:** `hu/HU-02-congelar-racha` · **Commits revisados:** `4e4066b..033c6b8` (13)
 - **Ficheros tocados:** código de 7 tasks (API, web y e2e) y el rastro de la HU · **Tasks:** 7/7 completadas
 - **Auditores:** security-auditor ✔ · datos-personales-auditor ✔ · doc-code-drift-checker ✔
-- **Hallazgos:** críticos 0 · altos 0 · medios 1 · bajos 0
+- **Hallazgos:** críticos 0 · altos 0 · medios 0 · bajos 2
 - La HU entrega congelar la racha con su cupo anual, la racha que se salta los días congelados, la cancelación y la
-  pantalla, sin pedir nunca el motivo. La integración está en verde, pero un edge case no tiene evidencia real.
+  pantalla, sin pedir nunca el motivo. Cumple el PRD.
 
 ## 2. Veredicto
-Requiere cambios: el test de EC-15 dice que prueba un cuerpo que no es JSON y no lo envía, así que ese edge case no tiene evidencia.
+Aprobado con observaciones: tras la corrección de la ronda 1, los 10 criterios y los 16 edge cases tienen test en verde; queda una observación que es una decisión de producto (O-1).
 
 ## 3. Decisiones aplicables
 
@@ -23,16 +23,15 @@ Requiere cambios: el test de EC-15 dice que prueba un cuerpo que no es JSON y no
 ## 4. Hallazgos por auditor
 
 ### security-auditor
-Sin hallazgos. `findFreeze(memberId, freezeId)` exige los dos (`apps/api/src/modules/attendance/repository.ts`); SQL
-parametrizado; `:freezeId` con `pattern`.
+Sin hallazgos (como en la ronda 1).
 
 ### datos-personales-auditor
-Sin hallazgos. P2 (salud): ni columna (`002-create-freezes.sql`) ni campo (`additionalProperties: false`, probado en
-`apps/api/test/attendance/freeze-adversarial.test.ts:48`); el formulario no tiene campo de motivo
-(`apps/web/test/features/attendance/FreezeSection.test.tsx:187`). P7: la congelación no lleva `memberId` ni nombre.
+Sin hallazgos. Ningún dato de salud: ni columna, ni campo, ni texto libre (EC-14).
 
 ### doc-code-drift-checker
-Sin hallazgos bloqueantes. `docs/05_modules/asistencia/` aún no menciona la congelación: se actualiza con `/module-sync`.
+- `docs/05_modules/asistencia/` aún no menciona la congelación: se actualiza con `/module-sync`. No bloquea.
+- **Bajo.** `tasks/TASK-05.md` preveía 6 ficheros de test de `attendance` y son 5 (dos ya existían): anotado en su
+  brief. Sin acción.
 
 ## 5. Criterio → test
 
@@ -62,10 +61,10 @@ Sin hallazgos bloqueantes. `docs/05_modules/asistencia/` aún no menciona la con
 | EC-12 | - | De otro socio o inexistente: 404 | seguridad | `apps/api/test/attendance/freeze-cancel.test.ts:98` | pasa |
 | EC-13 | - | Sin conexión al congelar: aviso y se conserva lo escrito | fallo de dependencia | `apps/web/test/features/attendance/FreezeSection.test.tsx:127` | pasa |
 | EC-14 | - | Un campo de motivo: 400 y nada guardado | seguridad | `apps/api/test/attendance/freeze-adversarial.test.ts:48`, `apps/web/test/features/attendance/FreezeSection.test.tsx:187` | pasa |
-| EC-15 | - | Cuerpo que no es JSON, vacío o un array: 400 | input inválido | `apps/api/test/attendance/freeze-adversarial.test.ts:61` (solo envía `{}`, `[]` y números: ningún cuerpo que no sea JSON) | falla |
+| EC-15 | - | Cuerpo que no es JSON, vacío o un array: 400 | input inválido | `apps/api/test/attendance/freeze-adversarial.test.ts:61`, `:71` | pasa |
 | EC-16 | - | Doble clic en "Congelar" | idempotencia | `apps/web/test/features/attendance/FreezeSection.test.tsx:141`, `apps/api/test/attendance/freeze-api.test.ts:110` | pasa |
-| RNF-01 | - | < 300 ms con 400 check-ins y 20 congelaciones | rendimiento | `apps/api/test/attendance/streak-freeze.test.ts:96`, `apps/api/test/attendance/freeze-adversarial.test.ts:81` | pasa |
-| RNF-02 | - | Medianoche de Madrid al decidir "hoy" | boundary | `apps/api/test/attendance/freeze-adversarial.test.ts:71` | pasa |
+| RNF-01 | - | < 300 ms con 400 check-ins y 20 congelaciones | rendimiento | `apps/api/test/attendance/streak-freeze.test.ts:96`, `apps/api/test/attendance/freeze-adversarial.test.ts:99` | pasa |
+| RNF-02 | - | Medianoche de Madrid al decidir "hoy" | boundary | `apps/api/test/attendance/freeze-adversarial.test.ts:89` | pasa |
 
 ## 6. Gates de QUALITY-GATES
 
@@ -73,9 +72,9 @@ Sin hallazgos bloqueantes. `docs/05_modules/asistencia/` aún no menciona la con
 |---|---|---|
 | Líneas por fichero ≤ 300 | Máximo de la HU: `apps/web/test/features/attendance/FreezeSection.test.tsx`; en producción, `freeze-rules.ts` (≈ 130) | Sí |
 | Líneas por función ≤ 50 | `npm run lint` (`max-lines-per-function`): 0 avisos | Sí |
-| 1 test por RF y por edge case Must | 4/4 RF, 10/10 CA, 15/16 EC | No (EC-15) |
+| 1 test por RF y por edge case Must | 4/4 RF, 10/10 CA, 16/16 EC | Sí |
 | Ciclos de arreglo por task ≤ 2 | Máximo 1 (TASK-01, TASK-04, TASK-05) | Sí |
-| Anti-patrones de §4 | Un test cuyo nombre promete más de lo que comprueba (EC-15) | No |
+| Anti-patrones de §4 | Ninguno | Sí |
 
 ## 7. Integración
 Comandos ejecutados **por la review** y su salida real:
@@ -84,39 +83,48 @@ Comandos ejecutados **por la review** y su salida real:
 $ npm run integrate
 Paso           Resultado   Segundos
 -----------------------------------
-typecheck      verde            5,0
-lint           verde            2,5
-test-api       verde            3,3
-test-web       verde            3,8
-e2e            verde            8,4
+typecheck      verde            5,4
+lint           verde            2,9
+test-api       verde            3,7
+test-web       verde            4,7
+e2e            verde            8,8
 check-harness  verde            2,2
 -----------------------------------
-Total                          25,2
+Total                          27,6
 
 $ npm test -w apps/api
  Test Files  15 passed (15)
-      Tests  85 passed (85)
+      Tests  86 passed (86)
 
 $ npm test -w apps/web
  Test Files  7 passed (7)
       Tests  37 passed (37)
 
 $ npx playwright test
-  7 passed (7.5s)
+  7 passed (8.0s)
 ```
 
 ## 8. Limitaciones
 Ninguna.
 
 ## 9. Acciones requeridas
-1. `apps/api/test/attendance/freeze-adversarial.test.ts:61`: **medio · un test que no prueba lo que dice.** Se llama
-   "cuerpo no JSON, vacío o un array" pero solo envía `{}`, `[]` y números: ningún cuerpo que no sea JSON llega a la API.
-   Un test en verde que promete más de lo que comprueba da una cobertura que no existe, y EC-15 queda sin evidencia.
-   **Nace en la ejecución (TASK-06)**, no en la spec: el PRD y el diseño piden ese caso. Arreglo: añadir un cuerpo que
-   no es JSON con `content-type: application/json` y uno de texto plano, y comprobar el 400 `VALIDATION_ERROR`, en la
-   misma task (`[HU-02 TASK-06]`).
+Ninguna bloqueante. La de la ronda 1 está resuelta: `apps/api/test/attendance/freeze-adversarial.test.ts:71` envía
+un cuerpo que no es JSON (`application/json`) y uno de texto plano y comprueba el 400.
+
+Observaciones:
+
+1. **O-1 (bajo, decisión de producto).** "Te quedan N días para congelar este año" usa el año de hoy (DT-01 del PRD).
+   Quien congela en diciembre días de enero ve el cupo de diciembre. Cumple el PRD, pero **esconde una decisión de
+   producto**: se pregunta a Nuria.
+   - 2026-11-18 · **Nuria:** "Se queda así en esta versión; lo apunto para la siguiente." Queda en "Alcance no
+     implementado" del módulo.
+2. **O-2 (bajo).** La desviación de TASK-05 (5 ficheros de test en vez de 6) está explicada en su brief.
+
+**Aprobación del cambio (firma 4):** Nuria (PO), 2026-11-18, tras recorrer la tabla criterio → test y la web: congelar
+desde hoy, el error al empezar ayer, el cupo que baja y sube al cancelar, el aviso de congelada y el aviso sin conexión
+parando la API.
 
 ---
-Ronda: 1 · "Requiere cambios" previos: 0 (máximo 2; al tercero se para y se escala a la persona)
+Ronda: 2 · "Requiere cambios" previos: 1 (máximo 2; al tercero se para y se escala a la persona)
 
-VERDICT: Requiere cambios
+VERDICT: Aprobado con observaciones

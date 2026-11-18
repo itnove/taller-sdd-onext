@@ -28,7 +28,7 @@ Es la práctica del curso.
 - [x] tech-design
 - [x] task-planner
 - [x] implementar-hu
-- [ ] reviewer
+- [x] reviewer (ronda 1: Requiere cambios; ronda 2: Aprobado con observaciones)
 - [ ] merge a main
 - [ ] module-sync
 

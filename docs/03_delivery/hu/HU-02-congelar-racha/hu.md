@@ -54,5 +54,5 @@ Los flujos P, A1, A2 y E1 de UC-01 los cubrió HU-01; esta HU los mantiene (la r
 - [x] Diseño técnico (`plans/TECHNICAL_DOC-backend.md`, `plans/TECHNICAL_DOC-frontend.md`): `/tech-design`
 - [x] Tareas (`tasks/ROADMAP.md`): `/task-planner`
 - [x] Implementación + integración: `/implementar-hu`
-- [ ] Review (`review/REVIEW.md`): `/reviewer`
+- [x] Review (`review/REVIEW.md`, ronda 2; ronda 1 en `review/REVIEW-ronda-1.md`): `/reviewer`
 - [ ] Sync de módulos + merge local a `main`: `/module-sync`
