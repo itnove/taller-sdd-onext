@@ -1,0 +1,38 @@
+{
+  "name": "taller-sdd-onext",
+  "version": "0.0.0",
+  "private": true,
+  "description": "GymApp: repositorio de prácticas del curso Spec-Driven Development de ITNOVE (versión stack onext)",
+  "type": "module",
+  "workspaces": [
+    "apps/api",
+    "apps/web"
+  ],
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "typecheck": "npm run typecheck --workspaces && tsc -p tsconfig.json",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "e2e": "playwright test",
+    "db:reset": "npm run db:reset -w apps/api",
+    "check:env": "node scripts/check-env.mjs",
+    "check:harness": "node scripts/check-harness.mjs && node scripts/check-passive-effects.mjs && node scripts/integrate.mjs --self-test",
+    "integrate": "node scripts/integrate.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.63.0",
+    "@types/node": "24.19.1",
+    "eslint": "10.12.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "globals": "17.13.0",
+    "prettier": "3.9.9",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.71.1"
+  }
+}
