@@ -57,6 +57,7 @@ export function StreakPanel({ memberId, refreshKey }: { memberId: number; refres
       {view.number ? <p className="streak-number">{view.number}</p> : null}
       {view.label ? <p>{view.label}</p> : null}
       {view.message ? <p className="congrats">{view.message}</p> : null}
+      {view.frozen ? <p className="frozen">{view.frozen}</p> : null}
       {view.notice ? <p className="notice">{view.notice}</p> : null}
     </div>
   );

@@ -13,7 +13,7 @@ import { mockFetch } from '../../helpers/fetch.ts';
 
 const streak = (days: number, congratulate = days >= 7) => ({
   status: 200,
-  json: { memberId: 1, today: '2026-11-16', days, congratulate },
+  json: { memberId: 1, today: '2026-11-16', days, congratulate, frozenUntil: null },
 });
 
 describe('StreakPanel (HU-01)', () => {
@@ -64,6 +64,10 @@ describe('StreakPanel (HU-01)', () => {
     let days = 4;
     mockFetch({
       'GET /api/members': { status: 200, json: { members: [{ id: 1, name: 'Lucía Ferrer' }] } },
+      'GET /api/members/1/freezes': {
+        status: 200,
+        json: { today: '2026-11-16', remainingDays: 7, freezes: [] },
+      },
       'GET /api/members/1/streak': () => streak(days),
       'POST /api/members/1/checkins': () => {
         days = 5;
@@ -109,5 +113,26 @@ describe('StreakPanel (HU-01)', () => {
       days: 9,
       congratulate: true,
     });
+  });
+
+  it('CA-09 (HU-02): hoy congelado, "Racha congelada hasta el dd/mm/aaaa" junto a la racha', async () => {
+    mockFetch({
+      'GET /api/members/1/streak': {
+        status: 200,
+        json: {
+          memberId: 1,
+          today: '2026-11-18',
+          days: 10,
+          congratulate: true,
+          frozenUntil: '2026-11-22',
+        },
+      },
+    });
+
+    render(<StreakPanel memberId={1} refreshKey={0} />);
+
+    const panel = await screen.findByRole('status', { name: 'Tu racha' });
+    expect(panel.textContent).toContain('10');
+    expect(panel.textContent).toContain('Racha congelada hasta el 22/11/2026');
   });
 });

@@ -48,6 +48,29 @@
 > Lo no obvio y duradero, en un bloque `APRENDIZAJE` al final del informe.
 
 ## 7. Resultado de la integración
-> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: -.
+> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: 1/2.
 
-_Pendiente de implementar._
+```
+# Ciclo 0 (rojo)
+$ npm run typecheck
+src/features/attendance/streak-view.ts(37,5): error TS2741: Property 'frozen' is missing in type
+'{ state: "offline"; number: string; label: string; message: string; notice: string; }' but required in type 'StreakView'.
+$ npx eslint apps/web
+apps/web/src/features/attendance/FreezeForm.tsx
+  57:8  error  Function 'FreezeForm' has too many lines (51). Maximum allowed is 50  max-lines-per-function
+
+# Ciclo 1 (verde)
+$ npm test -w apps/web -- attendance
+ Test Files  5 passed (5)
+      Tests  33 passed (33)
+
+$ npm run typecheck
+(exit 0)
+
+$ npx eslint apps/web
+(exit 0, sin salida)
+```
+
+- **Resultado:** verde en el ciclo 1/2. La primera integración dio rojo por dos motivos: `streakView` no devolvía el campo nuevo `frozen` en sus tres ramas (typecheck) y `FreezeForm` pasaba de 50 líneas (lint). Vuelta al builder: rellenó `frozen` y separó el estado del formulario en `useFreezeForm`. Fuera de "Archivos afectados", actualizó los `mockFetch` de `App.test.tsx` y `AttendanceScreen.test.tsx` (la pantalla ahora pide también `/freezes`) y lo dijo en el informe. Son 5 ficheros de test de `attendance`, no 6: `StreakPanel.test.tsx` y `streak-view.test.ts` ya existían.
+- **Commit:** el de esta task, `feat(web): freeze form, list and frozen notice [HU-02 TASK-05]`.
+- **APRENDIZAJE:** el umbral de 50 líneas por función (QUALITY-GATES §2) se cumple sacando el estado del formulario a un hook (`useFreezeForm`), no partiendo el JSX.

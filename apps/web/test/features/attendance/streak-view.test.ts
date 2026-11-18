@@ -15,6 +15,7 @@ describe('streakView (HU-01)', () => {
       label: 'días seguidos',
       message: EMPTY_MESSAGE,
       notice: '',
+      frozen: '',
     });
   });
 
@@ -47,6 +48,14 @@ describe('streakView (HU-01)', () => {
       label: '',
       message: '',
       notice: OFFLINE_EMPTY,
+      frozen: '',
     });
+  });
+
+  it('CA-09 (HU-02): con frozenUntil, el texto de congelada en dd/mm/aaaa; sin él, nada', () => {
+    expect(streakView({ days: 3, congratulate: false, frozenUntil: '2027-01-02' }).frozen).toBe(
+      'Racha congelada hasta el 02/01/2027',
+    );
+    expect(streakView({ days: 3, congratulate: false, frozenUntil: null }).frozen).toBe('');
   });
 });

@@ -9,9 +9,13 @@ import {
 import { mockFetch } from '../../helpers/fetch.ts';
 
 const STREAK = (id: number) => ({
+  [`GET /api/members/${id}/freezes`]: {
+    status: 200,
+    json: { today: '2026-11-16', remainingDays: 7, freezes: [] },
+  },
   [`GET /api/members/${id}/streak`]: {
     status: 200,
-    json: { memberId: id, today: '2026-11-16', days: 0, congratulate: false },
+    json: { memberId: id, today: '2026-11-16', days: 0, congratulate: false, frozenUntil: null },
   },
 });
 
