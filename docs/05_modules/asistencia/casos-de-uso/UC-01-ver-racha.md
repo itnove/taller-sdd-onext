@@ -60,9 +60,9 @@ solo la última racha mostrada (§6).
 ## Trazabilidad
 | Flujo | HU | Criterio de aceptación (PRD) | Test |
 |---|---|---|---|
-| P | HU-01 | | |
-| A1 | HU-01 | | |
-| A2 | HU-01 | | |
-| E1 | HU-01 | | |
+| P | HU-01 | CA-01, CA-02 | |
+| A1 | HU-01 | CA-03 | |
+| A2 | HU-01 | CA-04 | |
+| E1 | HU-01 | CA-05 | |
 
 _La rellenan `/prd-writer` (CA), `/reviewer` (test) y `/module-sync` (al cerrar). Un flujo sin test es un hallazgo._
