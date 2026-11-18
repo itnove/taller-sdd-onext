@@ -4,7 +4,7 @@
 - **HU:** HU-01 · **Feature:** FEAT-01
 - **Scope:** backend
 - **Capa:** api: builder `api-builder`
-- **Estado:** Pendiente
+- **Estado:** Completada
 - **Complejidad:** S (< 1 h)
 
 ## Descripción
@@ -26,14 +26,14 @@
 - **Bloquea:** TASK-02
 
 ## Criterios de done
-- [ ] CA-01: el resultado es siempre un entero ≥ 0, también sin check-ins.
-- [ ] CA-02: 4 días hasta ayer + hoy → 5.
-- [ ] CA-03 y EC-01: falta ayer → 0; hoy sin check-in y ayer sí → cuenta desde ayer.
-- [ ] EC-03: días duplicados cuentan uno.
-- [ ] `npm test -w apps/api -- attendance/streak.test` en verde, con 1 fichero(s) de test.
-- [ ] `npm run typecheck` sin errores.
-- [ ] `npx eslint <ficheros tocados>` sin errores.
-- [ ] Commit único `feat(api): compute the attendance streak [HU-01 TASK-01]` nombrando los ficheros.
+- [x] CA-01: el resultado es siempre un entero ≥ 0, también sin check-ins.
+- [x] CA-02: 4 días hasta ayer + hoy → 5.
+- [x] CA-03 y EC-01: falta ayer → 0; hoy sin check-in y ayer sí → cuenta desde ayer.
+- [x] EC-03: días duplicados cuentan uno.
+- [x] `npm test -w apps/api -- attendance/streak.test` en verde, con 1 fichero(s) de test.
+- [x] `npm run typecheck` sin errores.
+- [x] `npx eslint <ficheros tocados>` sin errores.
+- [x] Commit único `feat(api): compute the attendance streak [HU-01 TASK-01]` nombrando los ficheros.
 
 ## Notas de implementación
 - Ninguna.
