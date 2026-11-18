@@ -47,6 +47,19 @@
 > Lo no obvio y duradero, en un bloque `APRENDIZAJE` al final del informe.
 
 ## 7. Resultado de la integración
-> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: -.
+> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: 0/2.
 
-_Pendiente de implementar._
+```
+$ npm test -w apps/api -- attendance/freeze-adversarial.test
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+
+$ npm run typecheck
+(exit 0)
+
+$ npx eslint apps/api/test/attendance/freeze-adversarial.test.ts
+(exit 0, sin salida)
+```
+
+- **Resultado:** verde, sin ciclos de arreglo (0/2). Ningún caso adversarial rompió el código.
+- **Commit:** el de esta task, `test(api): adversarial freeze cases [HU-02 TASK-06]`.
