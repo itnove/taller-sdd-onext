@@ -10,4 +10,12 @@
 
 ## Asistencia (módulo `asistencia`)
 
-Todavía ninguna: llegan con el shaping de la primera feature.
+Validadas por Nuria en el shaping de FEAT-01 (2026-11-16, respuestas R1-R6).
+
+- **RV-01 · Día.** Un día es el día de calendario del gimnasio de alta; hoy todos están en Madrid (Europe/Madrid).
+- **RV-02 · Un check-in por día.** Varios check-ins el mismo día cuentan como uno.
+- **RV-03 · La racha.** Días seguidos con check-in. Hasta que acaba el día el socio puede venir: la racha se rompe con
+  un día completo sin venir.
+- **RV-04 · Felicitación.** Un mensaje a partir de 7 días. Sin premios.
+- **RV-05 · Sin conexión.** El socio ve su última racha guardada con un aviso; el check-in sin conexión, más adelante.
+- **RV-06 · Rapidez.** La racha carga en menos de 300 ms.

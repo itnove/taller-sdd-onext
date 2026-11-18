@@ -1,12 +1,12 @@
 ---
 id: IDEA-001
 titulo: "Racha de asistencia"
-estado: idea            # idea | aceptada | descartada | completada
+estado: aceptada          # idea | aceptada | descartada | completada
 fecha: 2026-11-16
 autor: "Nuria (PO de GymTonic)"
 modulos_afectados: [asistencia]
 prioridad: alta
-feature: null
+feature: FEAT-01
 completada_en: null
 ---
 
@@ -34,4 +34,4 @@ Dudas iniciales:
 Los días de asistencia son datos personales: ver [RGPD.md](../../RGPD.md).
 
 ## Decisión
-Pendiente del shaping.
+Aceptada el 2026-11-16 tras el shaping: [FEAT-01](../features/FEAT-01-racha/feature.md).

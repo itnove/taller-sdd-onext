@@ -6,3 +6,4 @@ citan por su ID; `/module-sync` mantiene esta tabla y el estado de cada caso.
 
 | UC | Título | Actor | Estado | Feature | HU |
 |---|---|---|---|---|---|
+| [UC-01](UC-01-ver-racha.md) | Ver mi racha de asistencia | socio | aprobado | FEAT-01 | HU-01 |
