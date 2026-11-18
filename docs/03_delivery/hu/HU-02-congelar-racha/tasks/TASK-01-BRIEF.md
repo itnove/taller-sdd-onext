@@ -47,6 +47,20 @@
 > Lo no obvio y duradero, en un bloque `APRENDIZAJE` al final del informe.
 
 ## 7. Resultado de la integración
-> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: -.
+> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: 1/2.
 
-_Pendiente de implementar._
+```
+$ npm test -w apps/api -- attendance/freeze-rules.test
+ Test Files  1 passed (1)
+      Tests  17 passed (17)
+
+$ npm run typecheck
+(exit 0)
+
+$ npx eslint apps/api/src/modules/attendance/freeze-rules.ts apps/api/test/attendance/freeze-rules.test.ts
+(exit 0, sin salida)
+```
+
+- **Resultado:** verde en el ciclo 1/2. En la primera vuelta, el builder acotó el recorrido del cupo a 8 días para no recorrer rangos enormes; al leer el informe, la sesión vio que así un rango largo que cruza de año (del 28/12 al 10/01) pasaba el cupo aunque en 2027 tuviera 10 días. Volvió al builder con ese caso como test (`freeze-rules.test.ts`, "un rango largo que cruza de año"): ahora recorre como mucho 367 días.
+- **Commit:** el de esta task, `feat(api): freeze rules [HU-02 TASK-01]`.
+- **APRENDIZAJE:** un atajo de rendimiento en una regla de negocio necesita su propio test de frontera: el de 8 días era correcto para un año y falso al cruzar de año.

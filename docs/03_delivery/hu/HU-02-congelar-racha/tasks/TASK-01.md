@@ -4,7 +4,7 @@
 - **HU:** HU-02 · **Feature:** FEAT-02
 - **Scope:** backend
 - **Capa:** api: builder `api-builder`
-- **Estado:** Pendiente
+- **Estado:** Completada
 - **Complejidad:** M (1–2 h)
 
 ## Descripción
@@ -26,15 +26,15 @@
 - **Bloquea:** TASK-02, TASK-03, TASK-04
 
 ## Criterios de done
-- [ ] CA-01: día que no existe, otro formato, inicio antes de hoy o fin antes del inicio → error del campo.
-- [ ] CA-02 y EC-03: 7 días en el año valen; 8 no, con `remainingDays`.
-- [ ] EC-04: del 30/12 al 02/01 cuenta 2 y 2.
-- [ ] CA-03: un día compartido con una activa → solape; con una cancelada, no.
-- [ ] CA-07 y CA-08: `checkCancel` solo deja cancelar si `start > hoy`.
-- [ ] `npm test -w apps/api -- attendance/freeze-rules.test` en verde, con 1 fichero(s) de test.
-- [ ] `npm run typecheck` sin errores.
-- [ ] `npx eslint <ficheros tocados>` sin errores.
-- [ ] Commit único `feat(api): freeze rules [HU-02 TASK-01]` nombrando los ficheros.
+- [x] CA-01: día que no existe, otro formato, inicio antes de hoy o fin antes del inicio → error del campo.
+- [x] CA-02 y EC-03: 7 días en el año valen; 8 no, con `remainingDays`.
+- [x] EC-04: del 30/12 al 02/01 cuenta 2 y 2.
+- [x] CA-03: un día compartido con una activa → solape; con una cancelada, no.
+- [x] CA-07 y CA-08: `checkCancel` solo deja cancelar si `start > hoy`.
+- [x] `npm test -w apps/api -- attendance/freeze-rules.test` en verde, con 1 fichero(s) de test.
+- [x] `npm run typecheck` sin errores.
+- [x] `npx eslint <ficheros tocados>` sin errores.
+- [x] Commit único `feat(api): freeze rules [HU-02 TASK-01]` nombrando los ficheros.
 
 ## Notas de implementación
 - Ninguna.
