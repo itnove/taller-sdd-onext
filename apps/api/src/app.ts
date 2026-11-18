@@ -1,9 +1,13 @@
 import Fastify, { type FastifyInstance, type FastifyServerOptions } from 'fastify';
 import type { DatabaseSync } from 'node:sqlite';
-import type { Clock } from './clock.ts';
+import { systemClock, type Clock } from './clock.ts';
+import { withTransaction } from './db/transaction.ts';
 import { registerCrossSiteGuard } from './http/cross-site.ts';
 import { registerErrorHandling } from './http/error-handler.ts';
 import { ajvOptions } from './http/validation.ts';
+import { createAttendanceRepository } from './modules/attendance/repository.ts';
+import { attendanceRoutes } from './modules/attendance/routes.ts';
+import { createAttendanceService } from './modules/attendance/service.ts';
 
 export interface AppOptions {
   db: DatabaseSync;
@@ -34,7 +38,7 @@ function registerHealth(app: FastifyInstance, db: DatabaseSync): void {
 }
 
 /** Único punto de composición: cada módulo recibe sus dependencias (base de datos y reloj) por inyección. */
-export function buildApp({ db, logger = false }: AppOptions): FastifyInstance {
+export function buildApp({ db, logger = false, now = systemClock }: AppOptions): FastifyInstance {
   const app = Fastify({ logger, ajv: ajvOptions });
   // Antes de cualquier ruta, para que todas hereden el envelope de error y la guarda entre sitios (DEC-04, DEC-06).
   registerErrorHandling(app);
@@ -45,6 +49,13 @@ export function buildApp({ db, logger = false }: AppOptions): FastifyInstance {
   });
 
   registerHealth(app, db);
+
+  const attendance = createAttendanceService({
+    repository: createAttendanceRepository(db),
+    now,
+    transaction: (fn) => withTransaction(db, fn),
+  });
+  app.register(attendanceRoutes, { prefix: '/api/members', service: attendance });
 
   return app;
 }
