@@ -5,6 +5,8 @@ import { withTransaction } from './db/transaction.ts';
 import { registerCrossSiteGuard } from './http/cross-site.ts';
 import { registerErrorHandling } from './http/error-handler.ts';
 import { ajvOptions } from './http/validation.ts';
+import { freezeRoutes } from './modules/attendance/freeze-routes.ts';
+import { createFreezeService } from './modules/attendance/freeze-service.ts';
 import { createAttendanceRepository } from './modules/attendance/repository.ts';
 import { attendanceRoutes } from './modules/attendance/routes.ts';
 import { createAttendanceService } from './modules/attendance/service.ts';
@@ -50,12 +52,16 @@ export function buildApp({ db, logger = false, now = systemClock }: AppOptions):
 
   registerHealth(app, db);
 
-  const attendance = createAttendanceService({
+  const deps = {
     repository: createAttendanceRepository(db),
     now,
-    transaction: (fn) => withTransaction(db, fn),
+    transaction: <T>(fn: () => T) => withTransaction(db, fn),
+  };
+  app.register(attendanceRoutes, {
+    prefix: '/api/members',
+    service: createAttendanceService(deps),
   });
-  app.register(attendanceRoutes, { prefix: '/api/members', service: attendance });
+  app.register(freezeRoutes, { prefix: '/api/members', service: createFreezeService(deps) });
 
   return app;
 }

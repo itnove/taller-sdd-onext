@@ -4,7 +4,7 @@
 - **HU:** HU-02 · **Feature:** FEAT-02
 - **Scope:** backend
 - **Capa:** api: builder `api-builder`
-- **Estado:** Pendiente
+- **Estado:** Completada
 - **Complejidad:** M (1–2 h)
 
 ## Descripción
@@ -31,15 +31,15 @@ Migración `002-create-freezes.sql`, repositorio de `freezes`, `freeze-service.t
 - **Bloquea:** TASK-03, TASK-04, TASK-05
 
 ## Criterios de done
-- [ ] CA-04: 201 con la congelación y `remainingDays` del año del inicio; aparece en `GET`.
-- [ ] CA-01: 400 `VALIDATION_ERROR` con `details[].field`.
-- [ ] CA-02: 409 `FREEZE_QUOTA_EXCEEDED` con `remainingDays`.
-- [ ] CA-03 y EC-16: 409 `FREEZE_OVERLAP`.
-- [ ] La congelación no lleva `memberId` ni nombre.
-- [ ] `npm test -w apps/api -- attendance/freeze-api.test` en verde, con 1 fichero(s) de test.
-- [ ] `npm run typecheck` sin errores.
-- [ ] `npx eslint <ficheros tocados>` sin errores.
-- [ ] Commit único `feat(api): create and list freezes (migration 002) [HU-02 TASK-02]` nombrando los ficheros.
+- [x] CA-04: 201 con la congelación y `remainingDays` del año del inicio; aparece en `GET`.
+- [x] CA-01: 400 `VALIDATION_ERROR` con `details[].field`.
+- [x] CA-02: 409 `FREEZE_QUOTA_EXCEEDED` con `remainingDays`.
+- [x] CA-03 y EC-16: 409 `FREEZE_OVERLAP`.
+- [x] La congelación no lleva `memberId` ni nombre.
+- [x] `npm test -w apps/api -- attendance/freeze-api.test` en verde, con 1 fichero(s) de test.
+- [x] `npm run typecheck` sin errores.
+- [x] `npx eslint <ficheros tocados>` sin errores.
+- [x] Commit único `feat(api): create and list freezes (migration 002) [HU-02 TASK-02]` nombrando los ficheros.
 
 ## Notas de implementación
 - Ninguna.

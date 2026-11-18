@@ -35,3 +35,48 @@ export const streakResponseSchema = {
     congratulate: { type: 'boolean' },
   },
 } as const;
+
+/** Cuerpo de `POST /freezes`: solo el rango. Un campo de más (p. ej., un motivo) es un 400 (HU-02, RNF-04). */
+export const freezeBodySchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['start', 'end'],
+  properties: {
+    start: { type: 'string', maxLength: 10 },
+    end: { type: 'string', maxLength: 10 },
+  },
+} as const;
+
+export type FreezeBody = { start: string; end: string };
+
+/** Una congelación en las respuestas: sin `memberId` ni nombre (RGPD §6). */
+export const freezeSchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['id', 'start', 'end', 'createdAt', 'cancelledAt'],
+  properties: {
+    id: { type: 'integer' },
+    start: { type: 'string' },
+    end: { type: 'string' },
+    createdAt: { type: 'string' },
+    cancelledAt: { type: ['string', 'null'] },
+  },
+} as const;
+
+export const freezeResultSchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['freeze', 'remainingDays'],
+  properties: { freeze: freezeSchema, remainingDays: { type: 'integer', minimum: 0 } },
+} as const;
+
+export const freezeListSchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['today', 'remainingDays', 'freezes'],
+  properties: {
+    today: { type: 'string' },
+    remainingDays: { type: 'integer', minimum: 0 },
+    freezes: { type: 'array', items: freezeSchema },
+  },
+} as const;
