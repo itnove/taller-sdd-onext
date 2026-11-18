@@ -3,9 +3,9 @@ sprint: 01
 objetivo: "El socio elige su nombre, hace check-in y ve su racha de asistencia."
 inicio: 2026-11-16
 fin: 2026-11-17            # por defecto, inicio + 1 (2 días)
-estado: en curso           # planificado | en curso | completado | cerrado
+estado: cerrado            # planificado | en curso | completado | cerrado
 base: e1825af                # sha de main al abrir el sprint; /audit-sprint audita base..main
-cerrado_en: null
+cerrado_en: 2026-11-17
 audit-override: null       # solo con razón ≥ 20 caracteres
 ---
 
@@ -16,30 +16,31 @@ Al final del sprint, el socio elige su nombre en GymApp, hace check-in y ve su r
 (vacío, con racha, felicitación y sin conexión).
 
 ## Resumen de estado
-- HU: hechas 0 / total 1 · tareas sin HU: hechas 0 / 2 · bloqueadas 0
-- Última actualización: 2026-11-16 10:00
+- HU: hechas 1 / total 1 · tareas sin HU: hechas 2 / 2 · bloqueadas 0
+- Última actualización: 2026-11-17 18:00
+- **Cerrado el 2026-11-17.** T-01, T-02 y HU-01 hechas e integradas (`npm run integrate` en verde). Auditoría "Aprobado con observaciones" (`docs/10_audits/sprints/sprint-01-AUDIT.md`). Archivadas en `completadas/`: IDEA-001, FEAT-01 y HU-01.
 
 ## Historias de usuario
 
-### HU-01 · Ver mi racha de asistencia · estado: pendiente
+### HU-01 · Ver mi racha de asistencia · estado: hecha
 - **Origen:** FEAT-01 · **Depende de:** T-01, T-02 · **Rama:** `hu/HU-01-racha`
-- [ ] prd-writer
-- [ ] tech-design
-- [ ] task-planner
-- [ ] implementar-hu
-- [ ] reviewer
-- [ ] merge a main
-- [ ] module-sync
+- [x] prd-writer
+- [x] tech-design
+- [x] task-planner
+- [x] implementar-hu
+- [x] reviewer (Aprobado con observaciones, ronda 1)
+- [x] merge a main
+- [x] module-sync
 
 ## Tareas sin HU
 
-### T-01 · Socios y check-ins en la API · estado: pendiente
+### T-01 · Socios y check-ins en la API · estado: hecha
 - **Tipo:** infraestructura del módulo `asistencia` (sin nada que preguntar ni aceptar: WORKFLOW §9)
 - Migración de `members` y `check_ins`, seed inventado (Lucía, Tomás, Irene y Pau), `GET /api/members` y
   `POST /api/members/:id/checkins` (el día de Madrid con el reloj inyectado; varios el mismo día cuentan uno).
   Brief: [sprint-01/T-01-BRIEF.md](sprint-01/T-01-BRIEF.md).
 
-### T-02 · Elegir socio y hacer check-in en la web · estado: pendiente
+### T-02 · Elegir socio y hacer check-in en la web · estado: hecha
 - **Tipo:** infraestructura del módulo `asistencia`
 - Selector "Socio" y botón "Hacer check-in hoy" con su aviso, sobre la API de T-01, y el smoke de Playwright al día.
   Brief: [sprint-01/T-02-BRIEF.md](sprint-01/T-02-BRIEF.md).

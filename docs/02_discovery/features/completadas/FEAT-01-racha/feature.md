@@ -1,7 +1,7 @@
 ---
 id: FEAT-01
 titulo: "Racha de asistencia"
-estado: priorizada       # shaping | priorizada | en delivery | entregada
+estado: entregada        # shaping | priorizada | en delivery | entregada
 prioridad: alta
 idea_origen: IDEA-001
 modulos_afectados: [asistencia]
@@ -58,7 +58,7 @@ sprint sin HU (`T-01` y `T-02` del sprint-01): no hay nada que preguntar ni que 
 ## Datos y conceptos clave
 - **Socio** (`Member`): nombre. **Check-in** (`CheckIn`): socio y día de Madrid. **Racha**: días seguidos con check-in.
 - Datos personales: los días con check-in del socio, para calcular su racha, mientras sea socio. En el navegador solo
-  la última racha mostrada ([RGPD.md](../../../RGPD.md) §1 y §6).
+  la última racha mostrada ([RGPD.md](../../../../RGPD.md) §1 y §6).
 
 ## Casos límite
 - **Input inválido:** socio que no existe → 404 `MEMBER_NOT_FOUND`, sin racha _(DEC-06)_.
@@ -80,12 +80,12 @@ sprint sin HU (`T-01` y `T-02` del sprint-01): no hay nada que preguntar ni que 
 - **Supuestos confirmados:** ninguno sin respuesta: todo está en R1-R6.
 
 ## Criterios de aceptación
-- [ ] Dado un socio con 4 días seguidos, cuando hace check-in hoy, entonces la racha muestra 5 días.
-- [ ] Dado un socio que vino ayer pero hoy no, cuando abre la app, entonces su racha sigue contando desde ayer.
-- [ ] Dado un socio que faltó anteayer y ayer, cuando abre la app, entonces su racha es 0.
-- [ ] Dado un socio sin check-ins, cuando abre la app, entonces ve "Empieza tu racha hoy".
-- [ ] Dado un socio con 6 días seguidos, cuando hace check-in hoy, entonces ve 7 días y la felicitación.
-- [ ] Dado que la API no responde, cuando el socio abre la app, entonces ve su última racha guardada y el aviso.
+- [x] Dado un socio con 4 días seguidos, cuando hace check-in hoy, entonces la racha muestra 5 días.
+- [x] Dado un socio que vino ayer pero hoy no, cuando abre la app, entonces su racha sigue contando desde ayer.
+- [x] Dado un socio que faltó anteayer y ayer, cuando abre la app, entonces su racha es 0.
+- [x] Dado un socio sin check-ins, cuando abre la app, entonces ve "Empieza tu racha hoy".
+- [x] Dado un socio con 6 días seguidos, cuando hace check-in hoy, entonces ve 7 días y la felicitación.
+- [x] Dado que la API no responde, cuando el socio abre la app, entonces ve su última racha guardada y el aviso.
 
 ## Preguntas abiertas
 Ninguna. Las respuestas de Nuria (2026-11-16), literales:

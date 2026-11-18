@@ -1,13 +1,13 @@
 ---
 id: IDEA-001
 titulo: "Racha de asistencia"
-estado: aceptada          # idea | aceptada | descartada | completada
+estado: completada          # idea | aceptada | descartada | completada
 fecha: 2026-11-16
 autor: "Nuria (PO de GymTonic)"
 modulos_afectados: [asistencia]
 prioridad: alta
 feature: FEAT-01
-completada_en: null
+completada_en: 2026-11-17
 ---
 
 # IDEA-001: Racha de asistencia
@@ -31,7 +31,7 @@ Dudas iniciales:
 - ¿Qué ve el socio si no hay conexión?
 - ¿Qué queda fuera de esta primera versión?
 
-Los días de asistencia son datos personales: ver [RGPD.md](../../RGPD.md).
+Los días de asistencia son datos personales: ver [RGPD.md](../../../RGPD.md).
 
 ## Decisión
-Aceptada el 2026-11-16 tras el shaping: [FEAT-01](../features/FEAT-01-racha/feature.md).
+Aceptada el 2026-11-16 tras el shaping: [FEAT-01](../../features/completadas/FEAT-01-racha/feature.md). Entregada en el sprint-01 (HU-01).
