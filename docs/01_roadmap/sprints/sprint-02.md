@@ -27,7 +27,7 @@ Es la práctica del curso.
 - [x] prd-writer
 - [x] tech-design
 - [x] task-planner
-- [ ] implementar-hu
+- [x] implementar-hu
 - [ ] reviewer
 - [ ] merge a main
 - [ ] module-sync
