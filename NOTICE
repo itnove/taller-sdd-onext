@@ -1,0 +1,64 @@
+Taller SDD · GymApp (versión stack onext)
+Copyright (c) 2026 ITNOVE
+
+Repositorio de prácticas del curso Spec-Driven Development de ITNOVE
+(https://www.itnove.com/curso/spec-driven-development), en su versión con el
+stack y el kit del taller de onext. Es material didáctico y sin soporte: no
+atiende incidencias ni pull requests.
+
+La versión sencilla del mismo repositorio (mismo producto, mismas etiquetas,
+stack ligero) está en https://github.com/itnove/taller-sdd-gymapp.
+
+Todos los datos del repositorio (socios, nombres, check-ins y congelaciones) son
+inventados. No hay datos de personas reales.
+
+
+LICENCIAS POR RUTA
+==================
+
+MIT (texto completo en LICENSE)
+-------------------------------
+- apps/, e2e/, scripts/          el código, los tests y los scripts
+- .claude/                       skills, agentes, hooks y configuración de Claude Code
+- AGENTS.md, CLAUDE.md           instrucciones de arranque para los agentes
+- docs/_templates/               las plantillas de los artefactos del flujo
+- bloques de código              cualquier bloque de código copiable dentro de docs/
+- ficheros de configuración      package.json, package-lock.json, tsconfig*.json,
+                                 eslint.config.js, playwright.config.ts,
+                                 .prettierrc.json, .prettierignore, .gitignore,
+                                 .nvmrc
+
+CC BY 4.0 (Creative Commons Atribución 4.0 Internacional)
+---------------------------------------------------------
+- docs/                          la prosa de la documentación, salvo
+                                 docs/_templates/ y los bloques de código
+- README.md                      la presentación del repositorio
+
+Texto legal de CC BY 4.0: https://creativecommons.org/licenses/by/4.0/legalcode.es
+
+Atribución sugerida al reutilizar la prosa:
+  "Taller SDD · GymApp (stack onext)", ITNOVE, CC BY 4.0.
+
+
+OBRA DE TERCEROS ADAPTADA
+=========================
+
+El stack, el flujo de trabajo, la estructura de docs/, las plantillas, las
+skills, los agentes, los hooks y los scripts están adaptados del repositorio del
+taller de onext "Ata en corto a tus agentes: SDD en directo" (TRGCON 2026):
+https://github.com/onext-lab/taller-trgcon26-sdd
+
+- Prosa adaptada: "Taller SDD · ATS de ejemplo", onext technology, CC BY 4.0.
+  Cambios: traducida del caso ATS (ofertas, candidatos, inscripciones) al caso
+  GymApp (socios, check-ins, racha de asistencia y congelación), con un solo
+  módulo (asistencia), una constitución propia y una nota de RGPD propia.
+- Plantillas, skills, agentes, hooks, scripts y código adaptados:
+  Copyright (c) 2026 onext technology, licencia MIT.
+
+
+DEPENDENCIAS DE TERCEROS
+========================
+
+Las dependencias que instala `npm install` (Fastify, React, Vite, TypeScript,
+Vitest, ESLint, Prettier, Playwright y las suyas) no se distribuyen con este
+repositorio y conservan sus propias licencias.
