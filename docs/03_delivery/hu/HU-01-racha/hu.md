@@ -42,7 +42,7 @@ Cubre todos los flujos de UC-01.
 
 ## Progreso SDD
 - [x] PRD (`specs/PRD.md`): `/prd-writer`
-- [ ] Diseño técnico (`plans/TECHNICAL_DOC.md`): `/tech-design`
+- [x] Diseño técnico (`plans/TECHNICAL_DOC-backend.md`, `plans/TECHNICAL_DOC-frontend.md`): `/tech-design`
 - [ ] Tareas (`tasks/ROADMAP.md`): `/task-planner`
 - [ ] Implementación + integración: `/implementar-hu`
 - [ ] Review (`review/REVIEW.md`): `/reviewer`
