@@ -44,6 +44,6 @@ Cubre todos los flujos de UC-01.
 - [x] PRD (`specs/PRD.md`): `/prd-writer`
 - [x] Diseño técnico (`plans/TECHNICAL_DOC-backend.md`, `plans/TECHNICAL_DOC-frontend.md`): `/tech-design`
 - [x] Tareas (`tasks/ROADMAP.md`): `/task-planner`
-- [ ] Implementación + integración: `/implementar-hu`
-- [ ] Review (`review/REVIEW.md`): `/reviewer`
+- [x] Implementación + integración: `/implementar-hu`
+- [x] Review (`review/REVIEW.md`): `/reviewer`
 - [ ] Sync de módulos + merge local a `main`: `/module-sync`
