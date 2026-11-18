@@ -2,7 +2,7 @@
 id: HU-02
 feature: FEAT-02
 titulo: "Congelar mi racha"
-estado: en curso         # pendiente | en curso | bloqueada | hecha | descartada
+estado: hecha            # pendiente | en curso | bloqueada | hecha | descartada
 rol: "socio"
 modulos_afectados: [asistencia]
 sprint: sprint-02
@@ -30,17 +30,17 @@ web) y con valor (el socio deja de perder su racha por vacaciones o lesión). Cu
 Los flujos P, A1, A2 y E1 de UC-01 los cubrió HU-01; esta HU los mantiene (la racha sin congelaciones es la de la v1).
 
 ## Criterios de aceptación
-- [ ] Dado un socio con racha de 10 días, cuando congela una semana y no viene, entonces al volver sigue con 10 y, si
+- [x] Dado un socio con racha de 10 días, cuando congela una semana y no viene, entonces al volver sigue con 10 y, si
   viene, pasa a 11 _(UC-01 · A3)_.
-- [ ] Dado un día congelado, cuando el socio viene ese día, entonces la racha suma 1 _(UC-01 · A4)_.
-- [ ] Dado que hoy está congelado, cuando abre la app, entonces ve "Racha congelada hasta el dd/mm/aaaa" _(UC-01 · A5)_.
-- [ ] Dado un rango válido desde hoy, cuando congela, entonces se guarda y ve cuántos días le quedan _(UC-02 · P, A1)_.
-- [ ] Dado hoy, cuando intenta congelar empezando ayer o con el fin antes del inicio, entonces no se guarda
+- [x] Dado un día congelado, cuando el socio viene ese día, entonces la racha suma 1 _(UC-01 · A4)_.
+- [x] Dado que hoy está congelado, cuando abre la app, entonces ve "Racha congelada hasta el dd/mm/aaaa" _(UC-01 · A5)_.
+- [x] Dado un rango válido desde hoy, cuando congela, entonces se guarda y ve cuántos días le quedan _(UC-02 · P, A1)_.
+- [x] Dado hoy, cuando intenta congelar empezando ayer o con el fin antes del inicio, entonces no se guarda
   _(UC-02 · E1)_.
-- [ ] Dado un socio que ya ha congelado 5 días este año, cuando intenta congelar 3 más, entonces no se guarda y ve que
+- [x] Dado un socio que ya ha congelado 5 días este año, cuando intenta congelar 3 más, entonces no se guarda y ve que
   le quedan 2 _(UC-02 · E2)_.
-- [ ] Dado una congelación existente, cuando intenta otra que comparte un día, entonces no se guarda _(UC-02 · E3)_.
-- [ ] Dado una congelación que aún no ha empezado, cuando la cancela, entonces sus días vuelven al cupo; si ya ha
+- [x] Dado una congelación existente, cuando intenta otra que comparte un día, entonces no se guarda _(UC-02 · E3)_.
+- [x] Dado una congelación que aún no ha empezado, cuando la cancela, entonces sus días vuelven al cupo; si ya ha
   empezado, no se puede cancelar _(UC-03 · P, E1)_.
 
 ## Notas y dependencias
@@ -55,4 +55,4 @@ Los flujos P, A1, A2 y E1 de UC-01 los cubrió HU-01; esta HU los mantiene (la r
 - [x] Tareas (`tasks/ROADMAP.md`): `/task-planner`
 - [x] Implementación + integración: `/implementar-hu`
 - [x] Review (`review/REVIEW.md`, ronda 2; ronda 1 en `review/REVIEW-ronda-1.md`): `/reviewer`
-- [ ] Sync de módulos + merge local a `main`: `/module-sync`
+- [x] Sync de módulos + merge local a `main`: `/module-sync`

@@ -3,7 +3,7 @@
 Vista única de qué hay hecho en cada módulo de GymApp. La fila de cada módulo la actualiza `/module-sync` al cerrar
 cada HU; el detalle vive en `docs/05_modules/{módulo}/functional.md`.
 
-- **Última actualización:** 2026-11-17 (HU-01, sprint-01).
+- **Última actualización:** 2026-11-18 (HU-02, sprint-02).
 
 ## Leyenda
 
@@ -17,7 +17,7 @@ cada HU; el detalle vive en `docs/05_modules/{módulo}/functional.md`.
 
 | Módulo | Estado | Capacidades ✅ / total | HU entregadas | Notas |
 |---|---|---|---|---|
-| [`asistencia`](05_modules/asistencia/functional.md) | ✅ | 2 / 2 | HU-01 | Check-in (T-01, T-02) y racha de asistencia |
+| [`asistencia`](05_modules/asistencia/functional.md) | ✅ | 4 / 4 | HU-01, HU-02 | Check-in (T-01, T-02), racha de asistencia, congelar y cancelar |
 
 ## Transversal
 

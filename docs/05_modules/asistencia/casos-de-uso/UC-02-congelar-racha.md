@@ -3,7 +3,7 @@ id: UC-02
 titulo: "Congelar mi racha"
 modulo: asistencia
 actor: socio
-estado: aprobado          # borrador | aprobado | implementado | obsoleto
+estado: implementado      # borrador | aprobado | implementado | obsoleto
 feature: FEAT-02
 hus: [HU-02]
 ---
