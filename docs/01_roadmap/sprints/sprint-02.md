@@ -3,9 +3,9 @@ sprint: 02
 objetivo: "El socio congela su racha unos días y no la pierde."
 inicio: 2026-11-18
 fin: 2026-11-19            # por defecto, inicio + 1 (2 días)
-estado: en curso           # planificado | en curso | completado | cerrado
+estado: cerrado            # planificado | en curso | completado | cerrado
 base: 4c81cbc                # sha de main al abrir el sprint; /audit-sprint audita base..main
-cerrado_en: null
+cerrado_en: 2026-11-18
 audit-override: null       # solo con razón ≥ 20 caracteres
 ---
 
@@ -17,20 +17,21 @@ congelación que aún no ha empezado y, al volver, conserva su racha; mientras e
 Es la práctica del curso.
 
 ## Resumen de estado
-- HU: hechas 0 / total 1 · bloqueadas 0
-- Última actualización: 2026-11-18 10:00
+- HU: hechas 1 / total 1 · bloqueadas 0
+- Última actualización: 2026-11-18 19:00
+- **Cerrado el 2026-11-18**, antes del fin previsto. HU-02 hecha e integrada (`npm run integrate` en verde), con la review aprobada con observaciones en la ronda 2. Auditoría "Aprobado con observaciones" (`docs/10_audits/sprints/sprint-02-AUDIT.md`). Archivadas en `completadas/`: IDEA-002, FEAT-02 y HU-02.
 
 ## Historias de usuario
 
-### HU-02 · Congelar mi racha · estado: en curso
+### HU-02 · Congelar mi racha · estado: hecha
 - **Origen:** FEAT-02 · **Depende de:** HU-01 (en `main`) · **Rama:** `hu/HU-02-congelar-racha`
 - [x] prd-writer
 - [x] tech-design
 - [x] task-planner
 - [x] implementar-hu
 - [x] reviewer (ronda 1: Requiere cambios; ronda 2: Aprobado con observaciones)
-- [ ] merge a main
-- [ ] module-sync
+- [x] merge a main
+- [x] module-sync
 
 ## Tareas sin HU
 _Ninguna._

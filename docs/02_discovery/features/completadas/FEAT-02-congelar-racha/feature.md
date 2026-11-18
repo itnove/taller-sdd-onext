@@ -1,7 +1,7 @@
 ---
 id: FEAT-02
 titulo: "Congelar la racha"
-estado: priorizada       # shaping | priorizada | en delivery | entregada
+estado: entregada        # shaping | priorizada | en delivery | entregada
 prioridad: alta
 idea_origen: IDEA-002
 modulos_afectados: [asistencia]
@@ -89,16 +89,16 @@ anteriores _(R7; constitución, principio 2)_.
 - **Supuestos confirmados:** ninguno sin respuesta: todo está en R1-R7.
 
 ## Criterios de aceptación
-- [ ] Dado un socio con racha de 10 días, cuando congela del lunes al domingo siguientes y no viene esos días, entonces
+- [x] Dado un socio con racha de 10 días, cuando congela del lunes al domingo siguientes y no viene esos días, entonces
   el lunes de después sigue con 10 días y, si viene, pasa a 11.
-- [ ] Dado un socio que ya ha congelado 5 días este año, cuando intenta congelar 3 más, entonces no se guarda y se le
+- [x] Dado un socio que ya ha congelado 5 días este año, cuando intenta congelar 3 más, entonces no se guarda y se le
   dice cuántos le quedan (2).
-- [ ] Dado hoy, cuando el socio intenta congelar empezando ayer, entonces no se guarda.
-- [ ] Dado un socio con una congelación de 3 días, cuando intenta otra que comparte un día, entonces no se guarda.
-- [ ] Dado un socio con un día congelado, cuando viene ese día, entonces la racha suma 1.
-- [ ] Dado una congelación que empieza la semana que viene, cuando el socio la cancela, entonces sus días vuelven al
+- [x] Dado hoy, cuando el socio intenta congelar empezando ayer, entonces no se guarda.
+- [x] Dado un socio con una congelación de 3 días, cuando intenta otra que comparte un día, entonces no se guarda.
+- [x] Dado un socio con un día congelado, cuando viene ese día, entonces la racha suma 1.
+- [x] Dado una congelación que empieza la semana que viene, cuando el socio la cancela, entonces sus días vuelven al
   cupo; y si ya ha empezado, no se puede cancelar.
-- [ ] Dado que hoy está congelado, cuando el socio abre la app, entonces ve su racha y "Racha congelada hasta el
+- [x] Dado que hoy está congelado, cuando el socio abre la app, entonces ve su racha y "Racha congelada hasta el
   dd/mm/aaaa".
 
 ## Preguntas abiertas

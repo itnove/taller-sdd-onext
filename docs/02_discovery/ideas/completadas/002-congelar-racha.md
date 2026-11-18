@@ -1,13 +1,13 @@
 ---
 id: IDEA-002
 titulo: "Congelar la racha"
-estado: aceptada          # idea | aceptada | descartada | completada
+estado: completada          # idea | aceptada | descartada | completada
 fecha: 2026-11-18
 autor: "Nuria (PO de GymTonic)"
 modulos_afectados: [asistencia]
 prioridad: alta
 feature: FEAT-02
-completada_en: null
+completada_en: 2026-11-18
 ---
 
 # IDEA-002: Congelar la racha
@@ -35,4 +35,4 @@ Dudas iniciales:
 - ¿Cómo sabremos si ha servido?
 
 ## Decisión
-Aceptada el 2026-11-18 tras el shaping: [FEAT-02](../features/FEAT-02-congelar-racha/feature.md).
+Aceptada el 2026-11-18 tras el shaping: [FEAT-02](../../features/completadas/FEAT-02-congelar-racha/feature.md). Entregada en el sprint-02 (HU-02).
