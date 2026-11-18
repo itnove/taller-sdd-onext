@@ -4,7 +4,7 @@
 - **HU:** HU-02 · **Feature:** FEAT-02
 - **Scope:** backend
 - **Capa:** api: builder `api-builder`
-- **Estado:** Pendiente
+- **Estado:** Completada
 - **Complejidad:** S (< 1 h)
 
 ## Descripción
@@ -29,17 +29,17 @@
 - **Bloquea:** TASK-05
 
 ## Criterios de done
-- [ ] CA-05: racha de 10, una semana congelada sin venir → 10; si viene, 11.
-- [ ] CA-06: check-in en un día congelado suma.
-- [ ] CA-10 y EC-09: sin congelaciones, igual que la v1 (los tests de HU-01 siguen en verde).
-- [ ] EC-07: empieza mañana → `frozenUntil: null`.
-- [ ] EC-08: un hueco sin congelar rompe.
-- [ ] EC-10: una cancelada no se salta.
-- [ ] RNF-01: menos de 300 ms con 400 check-ins y 20 congelaciones.
-- [ ] `npm test -w apps/api -- attendance/streak` en verde, con 4 fichero(s) de test.
-- [ ] `npm run typecheck` sin errores.
-- [ ] `npx eslint <ficheros tocados>` sin errores.
-- [ ] Commit único `feat(api): streak skips frozen days and returns frozenUntil [HU-02 TASK-03]` nombrando los ficheros.
+- [x] CA-05: racha de 10, una semana congelada sin venir → 10; si viene, 11.
+- [x] CA-06: check-in en un día congelado suma.
+- [x] CA-10 y EC-09: sin congelaciones, igual que la v1 (los tests de HU-01 siguen en verde).
+- [x] EC-07: empieza mañana → `frozenUntil: null`.
+- [x] EC-08: un hueco sin congelar rompe.
+- [x] EC-10: una cancelada no se salta.
+- [x] RNF-01: menos de 300 ms con 400 check-ins y 20 congelaciones.
+- [x] `npm test -w apps/api -- attendance/streak` en verde, con 4 fichero(s) de test.
+- [x] `npm run typecheck` sin errores.
+- [x] `npx eslint <ficheros tocados>` sin errores.
+- [x] Commit único `feat(api): streak skips frozen days and returns frozenUntil [HU-02 TASK-03]` nombrando los ficheros.
 
 ## Notas de implementación
 - Ninguna.

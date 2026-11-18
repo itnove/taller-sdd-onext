@@ -27,12 +27,13 @@ export const checkInResponseSchema = {
 export const streakResponseSchema = {
   type: 'object',
   additionalProperties: false,
-  required: ['memberId', 'today', 'days', 'congratulate'],
+  required: ['memberId', 'today', 'days', 'congratulate', 'frozenUntil'],
   properties: {
     memberId: { type: 'integer' },
     today: { type: 'string' },
     days: { type: 'integer', minimum: 0 },
     congratulate: { type: 'boolean' },
+    frozenUntil: { type: ['string', 'null'] },
   },
 } as const;
 

@@ -47,6 +47,19 @@
 > Lo no obvio y duradero, en un bloque `APRENDIZAJE` al final del informe.
 
 ## 7. Resultado de la integración
-> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: -.
+> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: 0/2.
 
-_Pendiente de implementar._
+```
+$ npm test -w apps/api -- attendance/streak
+ Test Files  4 passed (4)
+      Tests  30 passed (30)
+
+$ npm run typecheck
+(exit 0)
+
+$ npx eslint apps/api
+(exit 0, sin salida)
+```
+
+- **Resultado:** verde, sin ciclos de arreglo (0/2). Como preveía el diseño, `streak-api.test.ts` de HU-01 se actualizó para el campo nuevo `frozenUntil`; el resto de los tests de HU-01 siguen igual y en verde (CA-10).
+- **Commit:** el de esta task, `feat(api): streak skips frozen days and returns frozenUntil [HU-02 TASK-03]`.
