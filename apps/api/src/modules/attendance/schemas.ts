@@ -23,3 +23,15 @@ export const checkInResponseSchema = {
   required: ['day', 'counted'],
   properties: { day: { type: 'string' }, counted: { type: 'boolean' } },
 } as const;
+
+export const streakResponseSchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['memberId', 'today', 'days', 'congratulate'],
+  properties: {
+    memberId: { type: 'integer' },
+    today: { type: 'string' },
+    days: { type: 'integer', minimum: 0 },
+    congratulate: { type: 'boolean' },
+  },
+} as const;

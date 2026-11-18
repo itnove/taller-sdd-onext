@@ -8,6 +8,13 @@ import {
 } from '../../../src/features/attendance/CheckInButton.tsx';
 import { mockFetch } from '../../helpers/fetch.ts';
 
+const STREAK = (id: number) => ({
+  [`GET /api/members/${id}/streak`]: {
+    status: 200,
+    json: { memberId: id, today: '2026-11-16', days: 0, congratulate: false },
+  },
+});
+
 const MEMBERS = {
   status: 200,
   json: {
@@ -25,7 +32,7 @@ describe('AttendanceScreen (T-02)', () => {
   });
 
   it('carga los socios en el selector "Socio"', async () => {
-    mockFetch({ 'GET /api/members': MEMBERS });
+    mockFetch({ ...STREAK(2), 'GET /api/members': MEMBERS });
 
     render(<AttendanceScreen />);
 
@@ -37,6 +44,7 @@ describe('AttendanceScreen (T-02)', () => {
   it('si no carga, avisa y permite reintentar', async () => {
     let calls = 0;
     mockFetch({
+      ...STREAK(2),
       'GET /api/members': () => (++calls === 1 ? { networkError: true } : MEMBERS),
     });
 
@@ -48,6 +56,8 @@ describe('AttendanceScreen (T-02)', () => {
 
   it('hace check-in del socio elegido y lo anuncia', async () => {
     const fetchMock = mockFetch({
+      ...STREAK(1),
+      ...STREAK(2),
       'GET /api/members': MEMBERS,
       'POST /api/members/1/checkins': { status: 200, json: { day: '2026-11-16', counted: true } },
     });
@@ -57,11 +67,12 @@ describe('AttendanceScreen (T-02)', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Hacer check-in hoy' }));
 
     expect(await screen.findByText(CHECKED_IN)).toBeDefined();
-    expect(fetchMock.calls.at(-1)?.body).toBeUndefined();
+    expect(fetchMock.calls.find((c) => c.method === 'POST')?.body).toBeUndefined();
   });
 
   it('un segundo check-in el mismo día lo dice', async () => {
     mockFetch({
+      ...STREAK(2),
       'GET /api/members': MEMBERS,
       'POST /api/members/2/checkins': { status: 200, json: { day: '2026-11-16', counted: false } },
     });

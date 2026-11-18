@@ -2,11 +2,19 @@ import { madridDay } from '../../calendar.ts';
 import type { Clock } from '../../clock.ts';
 import { notFound } from '../../errors.ts';
 import type { AttendanceRepository, Member } from './repository.ts';
+import { CONGRATULATE_FROM_DAYS, computeStreak } from './streak.ts';
 
 export interface AttendanceServiceDeps {
   repository: AttendanceRepository;
   now: Clock;
   transaction: <T>(fn: () => T) => T;
+}
+
+export interface Streak {
+  memberId: number;
+  today: string;
+  days: number;
+  congratulate: boolean;
 }
 
 export interface CheckInResult {
@@ -25,6 +33,14 @@ export function createAttendanceService({ repository, now, transaction }: Attend
   return {
     listMembers(): Member[] {
       return repository.listMembers();
+    },
+
+    /** La racha del socio hoy, en días de Madrid, y si toca felicitar (HU-01). Solo lee. */
+    getStreak(memberId: number): Streak {
+      assertMember(memberId);
+      const today = madridDay(now());
+      const days = computeStreak(repository.checkInDays(memberId), today);
+      return { memberId, today, days, congratulate: days >= CONGRATULATE_FROM_DAYS };
     },
 
     /** Check-in de hoy. Varios el mismo día de Madrid cuentan uno: el segundo no se guarda (FEAT-01, RN-02). */

@@ -23,6 +23,13 @@ export function createAttendanceRepository(db: DatabaseSync) {
         undefined
       );
     },
+    /** Días distintos con check-in del socio (los duplicados antiguos salen una vez). */
+    checkInDays(memberId: number): string[] {
+      return db
+        .prepare('SELECT DISTINCT day FROM check_ins WHERE member_id = ? ORDER BY day DESC')
+        .all(memberId)
+        .map((row) => String(row.day));
+    },
     insertCheckIn(memberId: number, day: string, createdAt: string): void {
       db.prepare('INSERT INTO check_ins (member_id, day, created_at) VALUES (?, ?, ?)').run(
         memberId,

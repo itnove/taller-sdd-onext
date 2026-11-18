@@ -1,6 +1,6 @@
 import type { FastifyPluginCallback } from 'fastify';
 import { idParamsSchema, type IdParams } from '../../http/validation.ts';
-import { checkInResponseSchema, membersResponseSchema } from './schemas.ts';
+import { checkInResponseSchema, membersResponseSchema, streakResponseSchema } from './schemas.ts';
 import type { AttendanceService } from './service.ts';
 
 export interface AttendanceRoutesOptions {
@@ -21,6 +21,12 @@ export const attendanceRoutes: FastifyPluginCallback<AttendanceRoutesOptions> = 
     '/:id/checkins',
     { schema: { params: idParamsSchema, response: { 200: checkInResponseSchema } } },
     (request) => service.checkIn(Number(request.params.id)),
+  );
+
+  app.get<{ Params: IdParams }>(
+    '/:id/streak',
+    { schema: { params: idParamsSchema, response: { 200: streakResponseSchema } } },
+    (request) => service.getStreak(Number(request.params.id)),
   );
 
   done();

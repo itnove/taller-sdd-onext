@@ -1,5 +1,5 @@
 import { badResponse, isRecord, requestJson } from '../../components/http.ts';
-import type { CheckInResult, Member } from './types.ts';
+import type { CheckInResult, Member, Streak } from './types.ts';
 
 function isMember(value: unknown): value is Member {
   return isRecord(value) && typeof value.id === 'number' && typeof value.name === 'string';
@@ -21,4 +21,23 @@ export async function checkIn(memberId: number): Promise<CheckInResult> {
     throw badResponse();
   }
   return { day: body.day, counted: body.counted };
+}
+
+function isStreak(value: unknown): value is Streak {
+  return (
+    isRecord(value) &&
+    typeof value.memberId === 'number' &&
+    typeof value.today === 'string' &&
+    typeof value.days === 'number' &&
+    Number.isInteger(value.days) &&
+    value.days >= 0 &&
+    typeof value.congratulate === 'boolean'
+  );
+}
+
+/** `GET /api/members/:id/streak`. Una forma inesperada es un error, nunca una racha inventada (EC-12). */
+export async function fetchStreak(memberId: number, signal?: AbortSignal): Promise<Streak> {
+  const body = await requestJson(`/api/members/${memberId}/streak`, { signal });
+  if (!isStreak(body)) throw badResponse();
+  return body;
 }

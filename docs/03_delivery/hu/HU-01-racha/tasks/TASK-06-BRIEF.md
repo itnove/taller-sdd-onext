@@ -1,0 +1,67 @@
+# Brief de implementación: HU-01 · TASK-06
+
+> Lo prepara `/implementar-hu` antes de lanzar al builder. Con este brief y lo que nombra, el builder no necesita más
+> contexto. Plantilla: `docs/_templates/BRIEF-IMPLEMENTACION.template.md`.
+
+## 1. Qué hay que hacer
+- **La task es el contrato:** `docs/03_delivery/hu/HU-01-racha/tasks/TASK-06.md` (criterios de done incluidos).
+- **Capa y builder:** `web` → `web-builder`.
+- **Diseño:** `docs/03_delivery/hu/HU-01-racha/plans/TECHNICAL_DOC-frontend.md`, secciones "Estrategia de tests".
+- **Criterios que cubre:** CA-02, CA-03, CA-04 · EC-06.
+- **Dónde se trabaja:** la raíz del repo, rama `hu/HU-01-racha` (ya creada; no cambies de rama).
+- **Lo que ya está en la rama:** TASK-01 a TASK-04.
+- **Lee solo lo que la task nombra.**
+
+## 2. Invariantes que aplican
+- [x] **Decisiones:** DEC-03 (los e2e regeneran su propia base desde el seed).
+- [ ] **Envelope de error** `{ error: { code, message, details? } }` con códigos estables; nunca *stack traces*.
+- [ ] **Validación con el JSON Schema de Fastify** en cada ruta (params y respuesta).
+- [ ] **SQLite parametrizado**: siempre `db.prepare(…).run/get/all(params)`.
+- [ ] **Migraciones**: no hay migración en esta task.
+- [x] **Datos personales** (docs/RGPD.md): el seed es inventado.
+- [x] **Accesibilidad** (web): roles y nombres accesibles, `role="status"`/`role="alert"`, estados de carga, vacío y error.
+- [x] **Caracteres crudos**: nunca NUL ni U+2028/U+2029 en el código.
+- [x] **Reuso obligatorio**:
+      La config de `playwright.config.ts` (puertos 3101/5174 y `data/e2e.db`).
+
+## 3. Prohibiciones
+- [x] **El builder no hace commit**: deja los cambios en el árbol; la sesión integra, verifica y comitea.
+- [x] **No arregles bugs fuera de alcance: repórtalos.**
+- [x] **Nunca** `git add -A`, `git add .`, `git stash`, `git push` ni cambios de rama.
+- [x] **No toques ficheros que no estén en "Archivos afectados"** sin decirlo en el informe.
+- [x] **No instales dependencias.** Nada de red; datos inventados.
+- [x] **No ejecutes la suite completa**: tests acotados a tus ficheros.
+
+## 4. Verificación que debes PEGAR en tu informe (salida real, no un resumen)
+- [x] `npx playwright test e2e/streak.spec.ts`: 1 fichero(s) de test.
+- [x] `npm run typecheck`.
+- [x] `npx eslint <ficheros tocados>`.
+- [x] `npx playwright test e2e/streak.spec.ts`.
+- [x] Los **criterios de done de la task, uno a uno, con su evidencia**.
+
+## 5. Permiso explícito para pararse
+> Si te falta algo, si este brief contradice la task o el diseño, si necesitarías instalar una dependencia o si el reuso
+> obligatorio no existe → **dilo y devuelve lo que tengas**.
+
+## 6. Aprendizaje
+> Lo no obvio y duradero, en un bloque `APRENDIZAJE` al final del informe.
+
+## 7. Resultado de la integración
+> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: 0/2.
+
+```
+$ npx playwright test e2e/streak.spec.ts
+  ✓  1 [chromium] › e2e/streak.spec.ts:6:1 › Irene hace check-in, llega a 7 días y ve la felicitación (CA-02, CA-04)
+  ✓  2 [chromium] › e2e/streak.spec.ts:22:1 › Pau ve una racha de tres dígitos (EC-06)
+  ✓  3 [chromium] › e2e/streak.spec.ts:29:1 › Tomás, sin check-ins, ve "Empieza tu racha hoy" (CA-03)
+  3 passed (4.1s)
+
+$ npm run typecheck
+(exit 0)
+
+$ npx eslint e2e
+(exit 0, sin salida)
+```
+
+- **Resultado:** verde, sin ciclos de arreglo (0/2).
+- **Commit:** el de esta task, `test(e2e): streak journey [HU-01 TASK-06]`.

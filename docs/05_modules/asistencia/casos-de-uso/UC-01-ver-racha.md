@@ -60,9 +60,9 @@ solo la última racha mostrada (§6).
 ## Trazabilidad
 | Flujo | HU | Criterio de aceptación (PRD) | Test |
 |---|---|---|---|
-| P | HU-01 | | |
-| A1 | HU-01 | | |
-| A2 | HU-01 | | |
-| E1 | HU-01 | | |
+| P | HU-01 | CA-01, CA-02 | `apps/api/test/attendance/streak.test.ts:18`, `apps/web/test/features/attendance/StreakPanel.test.tsx:63` |
+| A1 | HU-01 | CA-03 | `apps/api/test/attendance/streak.test.ts:22`, `e2e/streak.spec.ts:29` |
+| A2 | HU-01 | CA-04 | `apps/api/test/attendance/streak-api.test.ts:43`, `e2e/streak.spec.ts:6` |
+| E1 | HU-01 | CA-05 | `apps/web/test/features/attendance/StreakPanel.test.tsx:82` |
 
 _La rellenan `/prd-writer` (CA), `/reviewer` (test) y `/module-sync` (al cerrar). Un flujo sin test es un hallazgo._

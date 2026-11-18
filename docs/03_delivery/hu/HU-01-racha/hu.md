@@ -2,7 +2,7 @@
 id: HU-01
 feature: FEAT-01
 titulo: "Ver mi racha de asistencia"
-estado: pendiente        # pendiente | en curso | bloqueada | hecha | descartada
+estado: en curso         # pendiente | en curso | bloqueada | hecha | descartada
 rol: "socio"
 modulos_afectados: [asistencia]
 sprint: sprint-01
@@ -41,9 +41,9 @@ Cubre todos los flujos de UC-01.
   y el check-in sin conexión.
 
 ## Progreso SDD
-- [ ] PRD (`specs/PRD.md`): `/prd-writer`
-- [ ] Diseño técnico (`plans/TECHNICAL_DOC.md`): `/tech-design`
-- [ ] Tareas (`tasks/ROADMAP.md`): `/task-planner`
-- [ ] Implementación + integración: `/implementar-hu`
-- [ ] Review (`review/REVIEW.md`): `/reviewer`
+- [x] PRD (`specs/PRD.md`): `/prd-writer`
+- [x] Diseño técnico (`plans/TECHNICAL_DOC-backend.md`, `plans/TECHNICAL_DOC-frontend.md`): `/tech-design`
+- [x] Tareas (`tasks/ROADMAP.md`): `/task-planner`
+- [x] Implementación + integración: `/implementar-hu`
+- [x] Review (`review/REVIEW.md`): `/reviewer`
 - [ ] Sync de módulos + merge local a `main`: `/module-sync`
