@@ -2,6 +2,7 @@ import { madridDay } from '../../calendar.ts';
 import type { Clock } from '../../clock.ts';
 import { AppError, notFound } from '../../errors.ts';
 import {
+  checkCancel,
   isActive,
   remainingDays,
   validateFreeze,
@@ -71,6 +72,25 @@ export function createFreezeService({ repository, now, transaction }: FreezeServ
         return {
           freeze,
           remainingDays: remainingDays([...mine, freeze], freeze.start.slice(0, 4)),
+        };
+      });
+    },
+
+    /** Cancela una congelación que aún no ha empezado: marca `cancelledAt`, no borra (RN-07, DD-03). */
+    cancel(memberId: number, freezeId: number): FreezeResult {
+      const instant = now();
+      const today = madridDay(instant);
+      return transaction(() => {
+        assertMember(memberId);
+        const freeze = repository.findFreeze(memberId, freezeId);
+        if (!freeze) throw notFound('FREEZE_NOT_FOUND', 'No existe esa congelación.');
+        const error = checkCancel(freeze, today);
+        if (error) throw new AppError(error.code, 409, error.message);
+        repository.cancelFreeze(freeze.id, instant.toISOString());
+        const mine = repository.memberFreezes(memberId);
+        return {
+          freeze: { ...freeze, cancelledAt: instant.toISOString() },
+          remainingDays: remainingDays(mine, freeze.start.slice(0, 4)),
         };
       });
     },

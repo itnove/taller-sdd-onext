@@ -81,3 +81,16 @@ export const freezeListSchema = {
     freezes: { type: 'array', items: freezeSchema },
   },
 } as const;
+
+/** `:id` del socio y `:freezeId` de la congelación, los dos como texto con `pattern` (sin coerción, DEC-06). */
+export const freezeParamsSchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['id', 'freezeId'],
+  properties: {
+    id: { type: 'string', pattern: '^[1-9][0-9]{0,14}$' },
+    freezeId: { type: 'string', pattern: '^[1-9][0-9]{0,14}$' },
+  },
+} as const;
+
+export type FreezeParams = { id: string; freezeId: string };

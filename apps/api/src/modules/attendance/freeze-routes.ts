@@ -4,8 +4,10 @@ import type { FreezeService } from './freeze-service.ts';
 import {
   freezeBodySchema,
   freezeListSchema,
+  freezeParamsSchema,
   freezeResultSchema,
   type FreezeBody,
+  type FreezeParams,
 } from './schemas.ts';
 
 export interface FreezeRoutesOptions {
@@ -37,6 +39,12 @@ export const freezeRoutes: FastifyPluginCallback<FreezeRoutesOptions> = (
       const { start, end } = request.body;
       return reply.code(201).send(service.create(Number(request.params.id), { start, end }));
     },
+  );
+
+  app.delete<{ Params: FreezeParams }>(
+    '/:id/freezes/:freezeId',
+    { schema: { params: freezeParamsSchema, response: { 200: freezeResultSchema } } },
+    (request) => service.cancel(Number(request.params.id), Number(request.params.freezeId)),
   );
 
   done();

@@ -47,6 +47,29 @@
 > Lo no obvio y duradero, en un bloque `APRENDIZAJE` al final del informe.
 
 ## 7. Resultado de la integración
-> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: -.
+> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: 1/2.
 
-_Pendiente de implementar._
+```
+# Ciclo 0 (rojo)
+$ npm run typecheck
+src/modules/attendance/freeze-routes.ts(47,26): error TS2339: Property 'cancel' does not exist on type
+'{ list(memberId: number): FreezeList; create(memberId: number, range: FreezeRange): FreezeResult; }'.
+$ npm test -w apps/api -- attendance/freeze-cancel.test
+     × CA-07: cancela una que empieza la semana que viene y sus días vuelven al cupo
+     AssertionError: expected 500 to be 200
+
+# Ciclo 1 (verde)
+$ npm test -w apps/api -- attendance/freeze-cancel.test
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+
+$ npm run typecheck
+(exit 0)
+
+$ npx eslint apps/api
+(exit 0, sin salida)
+```
+
+- **Resultado:** verde en el ciclo 1/2. La primera integración dio rojo: el informe del builder decía que `cancel` estaba en `freeze-service.ts`, pero el cambio no había llegado al fichero (el typecheck lo cazó y los 6 tests de cancelar daban 500). Vuelta al builder con la salida real; en la segunda, verde.
+- **Commit:** el de esta task, `feat(api): cancel a freeze before it starts [HU-02 TASK-04]`.
+- **APRENDIZAJE:** ejecutar, no suponer: el informe de un builder no es evidencia; la salida del typecheck sí.

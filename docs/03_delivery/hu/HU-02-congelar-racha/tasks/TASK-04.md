@@ -4,7 +4,7 @@
 - **HU:** HU-02 · **Feature:** FEAT-02
 - **Scope:** backend
 - **Capa:** api: builder `api-builder`
-- **Estado:** Pendiente
+- **Estado:** Completada
 - **Complejidad:** S (< 1 h)
 
 ## Descripción
@@ -29,14 +29,14 @@
 - **Bloquea:** TASK-05
 
 ## Criterios de done
-- [ ] CA-07: 200, `cancelledAt` puesto y `remainingDays` sube; ya no sale en `GET`.
-- [ ] CA-08: empezada hoy o antes → 409 `FREEZE_ALREADY_STARTED`.
-- [ ] EC-11: segunda vez → 409 `FREEZE_ALREADY_CANCELLED`, sin cambios.
-- [ ] EC-12: de otro socio o inexistente → 404 `FREEZE_NOT_FOUND`.
-- [ ] `npm test -w apps/api -- attendance/freeze-cancel.test` en verde, con 1 fichero(s) de test.
-- [ ] `npm run typecheck` sin errores.
-- [ ] `npx eslint <ficheros tocados>` sin errores.
-- [ ] Commit único `feat(api): cancel a freeze before it starts [HU-02 TASK-04]` nombrando los ficheros.
+- [x] CA-07: 200, `cancelledAt` puesto y `remainingDays` sube; ya no sale en `GET`.
+- [x] CA-08: empezada hoy o antes → 409 `FREEZE_ALREADY_STARTED`.
+- [x] EC-11: segunda vez → 409 `FREEZE_ALREADY_CANCELLED`, sin cambios.
+- [x] EC-12: de otro socio o inexistente → 404 `FREEZE_NOT_FOUND`.
+- [x] `npm test -w apps/api -- attendance/freeze-cancel.test` en verde, con 1 fichero(s) de test.
+- [x] `npm run typecheck` sin errores.
+- [x] `npx eslint <ficheros tocados>` sin errores.
+- [x] Commit único `feat(api): cancel a freeze before it starts [HU-02 TASK-04]` nombrando los ficheros.
 
 ## Notas de implementación
 - Ninguna.

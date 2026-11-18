@@ -28,6 +28,16 @@ function createFreezeOperations(db: DatabaseSync) {
         .all(memberId)
         .map(toFreeze);
     },
+    /** La congelación `freezeId` del socio; `undefined` si no existe o es de otro socio (EC-12). */
+    findFreeze(memberId: number, freezeId: number): Freeze | undefined {
+      const row = db
+        .prepare(`SELECT ${FREEZE_COLUMNS} FROM freezes WHERE id = ? AND member_id = ?`)
+        .get(freezeId, memberId);
+      return row === undefined ? undefined : toFreeze(row);
+    },
+    cancelFreeze(freezeId: number, cancelledAt: string): void {
+      db.prepare('UPDATE freezes SET cancelled_at = ? WHERE id = ?').run(cancelledAt, freezeId);
+    },
     insertFreeze(memberId: number, { start, end }: FreezeRange, createdAt: string): Freeze {
       const { lastInsertRowid } = db
         .prepare(
