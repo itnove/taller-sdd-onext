@@ -54,6 +54,11 @@ export class ApiError extends Error {
   }
 }
 
+/** Error for a 2xx whose body does not have the expected shape. */
+export function badResponse(): ApiError {
+  return new ApiError(0, 'CLIENT_BAD_RESPONSE', BAD_RESPONSE_MESSAGE);
+}
+
 /** Text to show to the person for any error coming from the client. */
 export function userMessage(error: unknown): string {
   return error instanceof ApiError ? error.message : CONNECTION_MESSAGE;
@@ -107,13 +112,13 @@ function interpret(status: number, text: string): unknown {
   if (status === 204) return undefined;
   const parsed = parseJson(text);
   if (status >= 200 && status < 300) {
-    if (!parsed.ok) throw new ApiError(0, 'CLIENT_BAD_RESPONSE', BAD_RESPONSE_MESSAGE);
+    if (!parsed.ok) throw badResponse();
     return parsed.value;
   }
   const envelopeError = parsed.ok ? toEnvelopeError(status, parsed.value) : null;
   if (envelopeError) throw envelopeError;
   if (status >= 500) throw new ApiError(0, 'CLIENT_NETWORK', CONNECTION_MESSAGE);
-  throw new ApiError(0, 'CLIENT_BAD_RESPONSE', BAD_RESPONSE_MESSAGE);
+  throw badResponse();
 }
 
 async function send(

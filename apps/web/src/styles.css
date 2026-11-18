@@ -1,0 +1,51 @@
+/* Estilos mínimos (principios de diseño): texto de 18 px, foco visible y un dato principal grande. */
+:root {
+  font-family: system-ui, sans-serif;
+  font-size: 18px;
+  color: #1f2933;
+  background: #f7f5f0;
+}
+main {
+  max-width: 32rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+label {
+  display: block;
+  font-weight: 600;
+}
+button,
+select,
+input {
+  font-size: 18px;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+}
+:focus-visible {
+  outline: 3px solid #2f5d3a;
+  outline-offset: 2px;
+}
+.card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+}
+.streak-number {
+  font-size: 4rem;
+  font-weight: 700;
+  margin: 0;
+}
+.congrats {
+  color: #2f5d3a;
+  font-weight: 600;
+}
+.notice {
+  color: #7a5400;
+  font-weight: 600;
+}
+.error-text {
+  color: #a32020;
+  font-weight: 600;
+}

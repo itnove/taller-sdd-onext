@@ -1,8 +1,9 @@
 import { expect, test } from '@playwright/test';
 
-test('la página carga y muestra el estado de la API', async ({ page }) => {
+test('la página carga con los socios del seed', async ({ page }) => {
   await page.goto('/');
 
   await expect(page.getByRole('heading', { name: 'GymApp' })).toBeVisible();
-  await expect(page.getByRole('status')).toHaveText('Estado de la API: ok');
+  const options = page.getByLabel('Socio').locator('option');
+  await expect(options).toHaveText(['Irene Soler', 'Lucía Ferrer', 'Pau Roig', 'Tomás Abad']);
 });
