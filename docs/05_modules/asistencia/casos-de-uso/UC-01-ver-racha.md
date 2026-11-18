@@ -3,7 +3,7 @@ id: UC-01
 titulo: "Ver mi racha de asistencia"
 modulo: asistencia
 actor: socio
-estado: aprobado          # borrador | aprobado | implementado | obsoleto
+estado: implementado      # borrador | aprobado | implementado | obsoleto
 feature: FEAT-01
 hus: [HU-01]
 ---
