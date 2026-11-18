@@ -47,6 +47,21 @@
 > Lo no obvio y duradero, en un bloque `APRENDIZAJE` al final del informe.
 
 ## 7. Resultado de la integración
-> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: -.
+> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: 0/2.
 
-_Pendiente de implementar._
+```
+$ npx playwright test e2e/freeze.spec.ts
+  ✓  1 [chromium] › e2e/freeze.spec.ts:23:1 › Lucía congela hoy y mañana y ve su racha congelada (CA-04, CA-09)
+  ✓  2 [chromium] › e2e/freeze.spec.ts:40:1 › Tomás congela la semana que viene y la cancela (CA-04, CA-07)
+  ✓  3 [chromium] › e2e/freeze.spec.ts:56:1 › empezar ayer da un error junto a "Desde" y no se pierde lo escrito (CA-01)
+  3 passed (5.6s)
+
+$ npm run typecheck
+(exit 0)
+
+$ npx eslint e2e
+(exit 0, sin salida)
+```
+
+- **Resultado:** verde, sin ciclos de arreglo (0/2).
+- **Commit:** el de esta task, `test(e2e): freeze journey [HU-02 TASK-07]`.

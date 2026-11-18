@@ -4,7 +4,7 @@
 - **HU:** HU-02 · **Feature:** FEAT-02
 - **Scope:** test
 - **Capa:** web: builder `web-builder`
-- **Estado:** Pendiente
+- **Estado:** Completada
 - **Complejidad:** S (< 1 h)
 
 ## Descripción
@@ -25,13 +25,13 @@ Playwright sobre el seed: Lucía congela hoy y mañana y ve el aviso; Tomás con
 - **Bloquea:** nada
 
 ## Criterios de done
-- [ ] Lucía: congela hoy-mañana → "Racha congelada hasta el …".
-- [ ] Tomás: congela la semana que viene → "Cancelar" → la lista vuelve a vacía y el cupo a 7.
-- [ ] Inicio ayer → error junto a "Desde".
-- [ ] `npx playwright test e2e/freeze.spec.ts` en verde, con 1 fichero(s) de test.
-- [ ] `npm run typecheck` sin errores.
-- [ ] `npx eslint <ficheros tocados>` sin errores.
-- [ ] Commit único `test(e2e): freeze journey [HU-02 TASK-07]` nombrando los ficheros.
+- [x] Lucía: congela hoy-mañana → "Racha congelada hasta el …".
+- [x] Tomás: congela la semana que viene → "Cancelar" → la lista vuelve a vacía y el cupo a 7.
+- [x] Inicio ayer → error junto a "Desde".
+- [x] `npx playwright test e2e/freeze.spec.ts` en verde, con 1 fichero(s) de test.
+- [x] `npm run typecheck` sin errores.
+- [x] `npx eslint <ficheros tocados>` sin errores.
+- [x] Commit único `test(e2e): freeze journey [HU-02 TASK-07]` nombrando los ficheros.
 
 ## Notas de implementación
 - Ninguna.
