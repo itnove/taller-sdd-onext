@@ -47,6 +47,21 @@
 > Lo no obvio y duradero, en un bloque `APRENDIZAJE` al final del informe.
 
 ## 7. Resultado de la integración
-> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: -.
+> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: 0/2.
 
-_Pendiente de implementar._
+```
+$ npx playwright test e2e/streak.spec.ts
+  ✓  1 [chromium] › e2e/streak.spec.ts:6:1 › Irene hace check-in, llega a 7 días y ve la felicitación (CA-02, CA-04)
+  ✓  2 [chromium] › e2e/streak.spec.ts:22:1 › Pau ve una racha de tres dígitos (EC-06)
+  ✓  3 [chromium] › e2e/streak.spec.ts:29:1 › Tomás, sin check-ins, ve "Empieza tu racha hoy" (CA-03)
+  3 passed (4.1s)
+
+$ npm run typecheck
+(exit 0)
+
+$ npx eslint e2e
+(exit 0, sin salida)
+```
+
+- **Resultado:** verde, sin ciclos de arreglo (0/2).
+- **Commit:** el de esta task, `test(e2e): streak journey [HU-01 TASK-06]`.
