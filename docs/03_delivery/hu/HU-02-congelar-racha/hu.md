@@ -2,7 +2,7 @@
 id: HU-02
 feature: FEAT-02
 titulo: "Congelar mi racha"
-estado: pendiente        # pendiente | en curso | bloqueada | hecha | descartada
+estado: en curso         # pendiente | en curso | bloqueada | hecha | descartada
 rol: "socio"
 modulos_afectados: [asistencia]
 sprint: sprint-02
@@ -50,9 +50,9 @@ Los flujos P, A1, A2 y E1 de UC-01 los cubrió HU-01; esta HU los mantiene (la r
   cupos por tipo de abono.
 
 ## Progreso SDD
-- [ ] PRD (`specs/PRD.md`): `/prd-writer`
-- [ ] Diseño técnico (`plans/TECHNICAL_DOC.md`): `/tech-design`
-- [ ] Tareas (`tasks/ROADMAP.md`): `/task-planner`
-- [ ] Implementación + integración: `/implementar-hu`
-- [ ] Review (`review/REVIEW.md`): `/reviewer`
+- [x] PRD (`specs/PRD.md`): `/prd-writer`
+- [x] Diseño técnico (`plans/TECHNICAL_DOC-backend.md`, `plans/TECHNICAL_DOC-frontend.md`): `/tech-design`
+- [x] Tareas (`tasks/ROADMAP.md`): `/task-planner`
+- [x] Implementación + integración: `/implementar-hu`
+- [x] Review (`review/REVIEW.md`, ronda 2; ronda 1 en `review/REVIEW-ronda-1.md`): `/reviewer`
 - [ ] Sync de módulos + merge local a `main`: `/module-sync`

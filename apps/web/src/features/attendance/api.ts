@@ -31,7 +31,8 @@ function isStreak(value: unknown): value is Streak {
     typeof value.days === 'number' &&
     Number.isInteger(value.days) &&
     value.days >= 0 &&
-    typeof value.congratulate === 'boolean'
+    typeof value.congratulate === 'boolean' &&
+    (value.frozenUntil === null || typeof value.frozenUntil === 'string')
   );
 }
 

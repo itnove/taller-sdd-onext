@@ -1,4 +1,6 @@
-/** Vista de la racha: función pura, sin DOM, para probar cada estado (HU-01, DD-03). */
+import { formatCalendarDate } from '../../components/format.ts';
+
+/** Vista de la racha: función pura, sin DOM, para probar cada estado (HU-01, DD-03; HU-02, CA-09). */
 
 export const EMPTY_MESSAGE = 'Empieza tu racha hoy';
 export const CONGRATS_MESSAGE = '¡Enhorabuena! Ya llevas una semana o más sin fallar.';
@@ -8,6 +10,8 @@ export const OFFLINE_EMPTY = 'Sin conexión y sin ninguna racha guardada todaví
 export interface StreakLike {
   days: number;
   congratulate: boolean;
+  /** Solo en la racha de la API; la guardada sin conexión no lo lleva. */
+  frozenUntil?: string | null;
 }
 
 export interface StreakView {
@@ -16,7 +20,12 @@ export interface StreakView {
   label: string;
   message: string;
   notice: string;
+  /** "Racha congelada hasta el dd/mm/aaaa" si hoy está congelado; si no, vacío. */
+  frozen: string;
 }
+
+export const frozenText = (until: string) =>
+  `Racha congelada hasta el ${formatCalendarDate(until)}`;
 
 /** `streak` es la de la API o la guardada; `null`, que no hay ninguna (solo pasa sin conexión). */
 export function streakView(
@@ -24,11 +33,27 @@ export function streakView(
   { offline = false }: { offline?: boolean } = {},
 ): StreakView {
   const notice = offline ? OFFLINE_NOTICE : '';
-  if (!streak)
-    return { state: 'offline', number: '', label: '', message: '', notice: OFFLINE_EMPTY };
-  const { days, congratulate } = streak;
+  if (!streak) {
+    return {
+      state: 'offline',
+      number: '',
+      label: '',
+      message: '',
+      notice: OFFLINE_EMPTY,
+      frozen: '',
+    };
+  }
+  const { days, congratulate, frozenUntil } = streak;
+  const frozen = frozenUntil ? frozenText(frozenUntil) : '';
   if (days === 0) {
-    return { state: 'empty', number: '0', label: 'días seguidos', message: EMPTY_MESSAGE, notice };
+    return {
+      state: 'empty',
+      number: '0',
+      label: 'días seguidos',
+      message: EMPTY_MESSAGE,
+      notice,
+      frozen,
+    };
   }
   return {
     state: 'streak',
@@ -36,5 +61,6 @@ export function streakView(
     label: days === 1 ? 'día seguido' : 'días seguidos',
     message: congratulate ? CONGRATS_MESSAGE : '',
     notice,
+    frozen,
   };
 }

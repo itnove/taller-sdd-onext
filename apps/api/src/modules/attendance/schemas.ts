@@ -27,11 +27,70 @@ export const checkInResponseSchema = {
 export const streakResponseSchema = {
   type: 'object',
   additionalProperties: false,
-  required: ['memberId', 'today', 'days', 'congratulate'],
+  required: ['memberId', 'today', 'days', 'congratulate', 'frozenUntil'],
   properties: {
     memberId: { type: 'integer' },
     today: { type: 'string' },
     days: { type: 'integer', minimum: 0 },
     congratulate: { type: 'boolean' },
+    frozenUntil: { type: ['string', 'null'] },
   },
 } as const;
+
+/** Cuerpo de `POST /freezes`: solo el rango. Un campo de más (p. ej., un motivo) es un 400 (HU-02, RNF-04). */
+export const freezeBodySchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['start', 'end'],
+  properties: {
+    start: { type: 'string', maxLength: 10 },
+    end: { type: 'string', maxLength: 10 },
+  },
+} as const;
+
+export type FreezeBody = { start: string; end: string };
+
+/** Una congelación en las respuestas: sin `memberId` ni nombre (RGPD §6). */
+export const freezeSchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['id', 'start', 'end', 'createdAt', 'cancelledAt'],
+  properties: {
+    id: { type: 'integer' },
+    start: { type: 'string' },
+    end: { type: 'string' },
+    createdAt: { type: 'string' },
+    cancelledAt: { type: ['string', 'null'] },
+  },
+} as const;
+
+export const freezeResultSchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['freeze', 'remainingDays'],
+  properties: { freeze: freezeSchema, remainingDays: { type: 'integer', minimum: 0 } },
+} as const;
+
+export const freezeListSchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['today', 'remainingDays', 'freezes'],
+  properties: {
+    today: { type: 'string' },
+    remainingDays: { type: 'integer', minimum: 0 },
+    freezes: { type: 'array', items: freezeSchema },
+  },
+} as const;
+
+/** `:id` del socio y `:freezeId` de la congelación, los dos como texto con `pattern` (sin coerción, DEC-06). */
+export const freezeParamsSchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['id', 'freezeId'],
+  properties: {
+    id: { type: 'string', pattern: '^[1-9][0-9]{0,14}$' },
+    freezeId: { type: 'string', pattern: '^[1-9][0-9]{0,14}$' },
+  },
+} as const;
+
+export type FreezeParams = { id: string; freezeId: string };

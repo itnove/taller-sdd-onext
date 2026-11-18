@@ -22,13 +22,13 @@ Es la práctica del curso.
 
 ## Historias de usuario
 
-### HU-02 · Congelar mi racha · estado: pendiente
+### HU-02 · Congelar mi racha · estado: en curso
 - **Origen:** FEAT-02 · **Depende de:** HU-01 (en `main`) · **Rama:** `hu/HU-02-congelar-racha`
-- [ ] prd-writer
-- [ ] tech-design
-- [ ] task-planner
-- [ ] implementar-hu
-- [ ] reviewer
+- [x] prd-writer
+- [x] tech-design
+- [x] task-planner
+- [x] implementar-hu
+- [x] reviewer (ronda 1: Requiere cambios; ronda 2: Aprobado con observaciones)
 - [ ] merge a main
 - [ ] module-sync
 

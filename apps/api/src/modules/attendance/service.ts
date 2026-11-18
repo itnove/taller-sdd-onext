@@ -2,6 +2,7 @@ import { madridDay } from '../../calendar.ts';
 import type { Clock } from '../../clock.ts';
 import { notFound } from '../../errors.ts';
 import type { AttendanceRepository, Member } from './repository.ts';
+import { frozenDaySet, frozenUntil } from './freeze-rules.ts';
 import { CONGRATULATE_FROM_DAYS, computeStreak } from './streak.ts';
 
 export interface AttendanceServiceDeps {
@@ -15,6 +16,8 @@ export interface Streak {
   today: string;
   days: number;
   congratulate: boolean;
+  /** Fin de la congelación activa que contiene hoy, o `null` (HU-02, RN-08). */
+  frozenUntil: string | null;
 }
 
 export interface CheckInResult {
@@ -35,12 +38,19 @@ export function createAttendanceService({ repository, now, transaction }: Attend
       return repository.listMembers();
     },
 
-    /** La racha del socio hoy, en días de Madrid, y si toca felicitar (HU-01). Solo lee. */
+    /** La racha del socio hoy, en días de Madrid, y si toca felicitar (HU-01); salta los días congelados (HU-02). */
     getStreak(memberId: number): Streak {
       assertMember(memberId);
       const today = madridDay(now());
-      const days = computeStreak(repository.checkInDays(memberId), today);
-      return { memberId, today, days, congratulate: days >= CONGRATULATE_FROM_DAYS };
+      const freezes = repository.memberFreezes(memberId);
+      const days = computeStreak(repository.checkInDays(memberId), today, frozenDaySet(freezes));
+      return {
+        memberId,
+        today,
+        days,
+        congratulate: days >= CONGRATULATE_FROM_DAYS,
+        frozenUntil: frozenUntil(freezes, today),
+      };
     },
 
     /** Check-in de hoy. Varios el mismo día de Madrid cuentan uno: el segundo no se guarda (FEAT-01, RN-02). */

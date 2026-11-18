@@ -37,7 +37,13 @@ describe('GET /api/members/:id/streak (HU-01)', () => {
     const response = await getStreak();
 
     expect(response.statusCode).toBe(200);
-    expect(response.json()).toEqual({ memberId: 1, today: TODAY, days: 5, congratulate: false });
+    expect(response.json()).toEqual({
+      memberId: 1,
+      today: TODAY,
+      days: 5,
+      congratulate: false,
+      frozenUntil: null,
+    });
   });
 
   it('CA-04 y EC-07: con 6 días no felicita; el check-in de hoy la lleva a 7 y felicita', async () => {
@@ -49,12 +55,18 @@ describe('GET /api/members/:id/streak (HU-01)', () => {
     expect((await getStreak()).json()).toMatchObject({ days: 7, congratulate: true });
   });
 
-  it('la respuesta solo lleva memberId, today, days y congratulate (RNF-04)', async () => {
+  it('la respuesta solo lleva memberId, today, days, congratulate y frozenUntil (RNF-04; HU-02)', async () => {
     addRun(2);
 
     const body = (await getStreak()).json<Record<string, unknown>>();
 
-    expect(Object.keys(body).sort()).toEqual(['congratulate', 'days', 'memberId', 'today']);
+    expect(Object.keys(body).sort()).toEqual([
+      'congratulate',
+      'days',
+      'frozenUntil',
+      'memberId',
+      'today',
+    ]);
   });
 
   it('EC-04: un socio que no existe da 404 MEMBER_NOT_FOUND', async () => {

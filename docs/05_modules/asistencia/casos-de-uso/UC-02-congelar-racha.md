@@ -57,10 +57,10 @@ Escribe los días que el socio no vendrá (ejecución del contrato, [RGPD.md](..
 ## Trazabilidad
 | Flujo | HU | Criterio de aceptación (PRD) | Test |
 |---|---|---|---|
-| P | HU-02 | | |
-| A1 | HU-02 | | |
-| E1 | HU-02 | | |
-| E2 | HU-02 | | |
-| E3 | HU-02 | | |
+| P | HU-02 | CA-04 | `apps/api/test/attendance/freeze-api.test.ts:27`, `e2e/freeze.spec.ts:23` |
+| A1 | HU-02 | CA-02 | `apps/api/test/attendance/freeze-rules.test.ts:68` |
+| E1 | HU-02 | CA-01 | `apps/api/test/attendance/freeze-api.test.ts:61`, `e2e/freeze.spec.ts:56` |
+| E2 | HU-02 | CA-02 | `apps/api/test/attendance/freeze-api.test.ts:94`, `apps/web/test/features/attendance/FreezeSection.test.tsx:103` |
+| E3 | HU-02 | CA-03 | `apps/api/test/attendance/freeze-api.test.ts:110` |
 
 _La rellenan `/prd-writer` (CA), `/reviewer` (test) y `/module-sync` (al cerrar). Un flujo sin test es un hallazgo._

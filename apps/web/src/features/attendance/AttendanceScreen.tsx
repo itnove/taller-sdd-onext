@@ -3,6 +3,7 @@ import { userMessage } from '../../components/http.ts';
 import { ErrorMessage, LoadingMessage } from '../../components/StatusMessages.tsx';
 import { fetchMembers } from './api.ts';
 import { CheckInButton } from './CheckInButton.tsx';
+import { FreezeSection } from './FreezeSection.tsx';
 import { StreakPanel } from './StreakPanel.tsx';
 import type { Member } from './types.ts';
 
@@ -33,7 +34,7 @@ function useMembers(): [MembersState, () => void] {
   return [state, reload];
 }
 
-/** Pantalla del socio: elige su nombre, ve su racha (HU-01) y hace check-in (T-02). */
+/** Pantalla del socio: elige su nombre, ve su racha (HU-01), hace check-in (T-02) y la congela (HU-02). */
 export function AttendanceScreen() {
   const [members, reload] = useMembers();
   const [selected, setSelected] = useState<number | null>(null);
@@ -64,6 +65,11 @@ export function AttendanceScreen() {
         key={`check-in-${memberId}`}
         memberId={memberId}
         onCheckedIn={() => setRefreshKey((n) => n + 1)}
+      />
+      <FreezeSection
+        key={`freeze-${memberId}`}
+        memberId={memberId}
+        onChanged={() => setRefreshKey((n) => n + 1)}
       />
     </section>
   );

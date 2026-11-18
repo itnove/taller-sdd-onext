@@ -71,8 +71,8 @@ solo la última racha mostrada (§6).
 | A1 | HU-01 | CA-03 | `apps/api/test/attendance/streak.test.ts:22`, `e2e/streak.spec.ts:29` |
 | A2 | HU-01 | CA-04 | `apps/api/test/attendance/streak-api.test.ts:43`, `e2e/streak.spec.ts:6` |
 | E1 | HU-01 | CA-05 | `apps/web/test/features/attendance/StreakPanel.test.tsx:82` |
-| A3 | HU-02 | | |
-| A4 | HU-02 | | |
-| A5 | HU-02 | | |
+| A3 | HU-02 | CA-05 | `apps/api/test/attendance/streak-freeze.test.ts:13` |
+| A4 | HU-02 | CA-06 | `apps/api/test/attendance/streak-freeze.test.ts:22` |
+| A5 | HU-02 | CA-09 | `apps/web/test/features/attendance/StreakPanel.test.tsx:118`, `e2e/freeze.spec.ts:23` |
 
 _La rellenan `/prd-writer` (CA), `/reviewer` (test) y `/module-sync` (al cerrar). Un flujo sin test es un hallazgo._
