@@ -48,6 +48,20 @@
 > Lo no obvio y duradero, en un bloque `APRENDIZAJE` al final del informe.
 
 ## 7. Resultado de la integración
-> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: -.
+> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: 0/2.
 
-_Pendiente de implementar._
+```
+$ npm test -w apps/api -- attendance/streak-api.test
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+
+$ npm run typecheck
+(exit 0)
+
+$ npx eslint apps/api/src/modules/attendance apps/api/test/attendance/streak-api.test.ts
+(exit 0, sin salida)
+```
+
+- **Resultado:** verde, sin ciclos de arreglo (0/2).
+- **Commit:** el de esta task, `feat(api): streak endpoint with congratulation flag [HU-01 TASK-02]`.
+- **APRENDIZAJE:** la primera petición de `app.inject` compila los schemas de Fastify: una medida de tiempo (CA-06) se toma tras una petición de calentamiento.
