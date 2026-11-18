@@ -2,7 +2,13 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { AttendanceScreen } from '../../../src/features/attendance/AttendanceScreen.tsx';
 import { StreakPanel } from '../../../src/features/attendance/StreakPanel.tsx';
-import { CONGRATS_MESSAGE, EMPTY_MESSAGE } from '../../../src/features/attendance/streak-view.ts';
+import { saveStreak } from '../../../src/features/attendance/streak-cache.ts';
+import {
+  CONGRATS_MESSAGE,
+  EMPTY_MESSAGE,
+  OFFLINE_EMPTY,
+  OFFLINE_NOTICE,
+} from '../../../src/features/attendance/streak-view.ts';
 import { mockFetch } from '../../helpers/fetch.ts';
 
 const streak = (days: number, congratulate = days >= 7) => ({
@@ -14,6 +20,7 @@ describe('StreakPanel (HU-01)', () => {
   afterEach(() => {
     cleanup();
     vi.unstubAllGlobals();
+    localStorage.clear();
   });
 
   it('muestra "Cargando tu racha…" y después el número grande', async () => {
@@ -70,5 +77,37 @@ describe('StreakPanel (HU-01)', () => {
 
     await screen.findByText('Check-in registrado.');
     expect((await screen.findByRole('status', { name: 'Tu racha' })).textContent).toContain('5');
+  });
+
+  it('CA-05: sin conexión, la última racha guardada con el aviso', async () => {
+    saveStreak(1, { today: '2026-11-15', days: 12, congratulate: true });
+    mockFetch({ 'GET /api/members/1/streak': { networkError: true } });
+
+    render(<StreakPanel memberId={1} refreshKey={0} />);
+
+    const panel = await screen.findByRole('status', { name: 'Tu racha' });
+    expect(panel.textContent).toContain('12');
+    expect(panel.textContent).toContain(OFFLINE_NOTICE);
+  });
+
+  it('EC-08: sin conexión y sin nada guardado, solo el aviso', async () => {
+    mockFetch({ 'GET /api/members/1/streak': { networkError: true } });
+
+    render(<StreakPanel memberId={1} refreshKey={0} />);
+
+    const panel = await screen.findByRole('status', { name: 'Tu racha' });
+    expect(panel.textContent).toBe(OFFLINE_EMPTY);
+  });
+
+  it('una carga correcta deja guardada la racha para la próxima vez sin conexión', async () => {
+    mockFetch({ 'GET /api/members/1/streak': streak(9) });
+    render(<StreakPanel memberId={1} refreshKey={0} />);
+    await screen.findByRole('status', { name: 'Tu racha' });
+
+    expect(JSON.parse(localStorage.getItem('gymapp:streak:1') ?? '')).toEqual({
+      today: '2026-11-16',
+      days: 9,
+      congratulate: true,
+    });
   });
 });

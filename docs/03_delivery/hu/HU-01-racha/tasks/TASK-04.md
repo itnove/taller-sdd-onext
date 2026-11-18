@@ -4,7 +4,7 @@
 - **HU:** HU-01 · **Feature:** FEAT-01
 - **Scope:** frontend
 - **Capa:** web: builder `web-builder`
-- **Estado:** Pendiente
+- **Estado:** Completada
 - **Complejidad:** S (< 1 h)
 
 ## Descripción
@@ -28,14 +28,14 @@
 - **Bloquea:** TASK-06
 
 ## Criterios de done
-- [ ] CA-05: sin conexión, la última racha guardada con "Sin conexión: esta es tu última racha guardada.".
-- [ ] EC-08: sin nada guardado, solo el aviso, sin número.
-- [ ] En `localStorage` solo `today`, `days` y `congratulate` (RGPD §6); un valor manipulado se ignora.
-- [ ] Si `localStorage` falla, la racha se sigue mostrando.
-- [ ] `npm test -w apps/web -- attendance` en verde, con 4 fichero(s) de test.
-- [ ] `npm run typecheck` sin errores.
-- [ ] `npx eslint <ficheros tocados>` sin errores.
-- [ ] Commit único `feat(web): show the last saved streak when offline [HU-01 TASK-04]` nombrando los ficheros.
+- [x] CA-05: sin conexión, la última racha guardada con "Sin conexión: esta es tu última racha guardada.".
+- [x] EC-08: sin nada guardado, solo el aviso, sin número.
+- [x] En `localStorage` solo `today`, `days` y `congratulate` (RGPD §6); un valor manipulado se ignora.
+- [x] Si `localStorage` falla, la racha se sigue mostrando.
+- [x] `npm test -w apps/web -- attendance` en verde, con 4 fichero(s) de test.
+- [x] `npm run typecheck` sin errores.
+- [x] `npx eslint <ficheros tocados>` sin errores.
+- [x] Commit único `feat(web): show the last saved streak when offline [HU-01 TASK-04]` nombrando los ficheros.
 
 ## Notas de implementación
 - Ninguna.

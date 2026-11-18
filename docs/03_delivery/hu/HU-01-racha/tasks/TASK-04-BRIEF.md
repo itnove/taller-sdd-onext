@@ -48,6 +48,20 @@
 > Lo no obvio y duradero, en un bloque `APRENDIZAJE` al final del informe.
 
 ## 7. Resultado de la integración
-> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: -.
+> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: 0/2.
 
-_Pendiente de implementar._
+```
+$ npm test -w apps/web -- attendance
+ Test Files  4 passed (4)
+      Tests  23 passed (23)
+
+$ npm run typecheck
+(exit 0)
+
+$ npx eslint apps/web
+(exit 0, sin salida)
+```
+
+- **Resultado:** verde, sin ciclos de arreglo (0/2).
+- **Commit:** el de esta task, `feat(web): show the last saved streak when offline [HU-01 TASK-04]`.
+- **APRENDIZAJE:** jsdom trae `localStorage`; para simular que está lleno basta `vi.spyOn(Storage.prototype, 'setItem')`.

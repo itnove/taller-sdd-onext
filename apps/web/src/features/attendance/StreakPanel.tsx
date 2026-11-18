@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { userMessage } from '../../components/http.ts';
+import { isOffline, userMessage } from '../../components/http.ts';
 import { ErrorMessage, LoadingMessage } from '../../components/StatusMessages.tsx';
 import { fetchStreak } from './api.ts';
+import { readCachedStreak, saveStreak } from './streak-cache.ts';
 import { streakView, type StreakView } from './streak-view.ts';
 
 type PanelState =
@@ -17,9 +18,20 @@ function useStreak(memberId: number, refreshKey: number): [PanelState, () => voi
   useEffect(() => {
     const controller = new AbortController();
     fetchStreak(memberId, controller.signal)
-      .then((streak) => setState({ status: 'ready', view: streakView(streak) }))
+      .then((streak) => {
+        saveStreak(memberId, streak);
+        setState({ status: 'ready', view: streakView(streak) });
+      })
       .catch((error: unknown) => {
         if (controller.signal.aborted) return;
+        if (isOffline(error)) {
+          // Sin conexión: la última racha guardada con el aviso, o solo el aviso (CA-05, EC-08).
+          setState({
+            status: 'ready',
+            view: streakView(readCachedStreak(memberId), { offline: true }),
+          });
+          return;
+        }
         setState({ status: 'error', message: userMessage(error) });
       });
     return () => controller.abort();
