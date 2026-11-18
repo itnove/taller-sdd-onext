@@ -63,3 +63,20 @@ $ npx eslint apps/api/test/attendance/freeze-adversarial.test.ts
 
 - **Resultado:** verde, sin ciclos de arreglo (0/2). Ningún caso adversarial rompió el código.
 - **Commit:** el de esta task, `test(api): adversarial freeze cases [HU-02 TASK-06]`.
+
+### Corrección tras la review (ronda 1)
+La review de HU-02 (ronda 1, `review/REVIEW-ronda-1.md`) vio que el test "EC-15: entradas hostiles: cuerpo no JSON,
+vacío o un array" no enviaba ningún cuerpo que no fuera JSON. Nace en la ejecución de esta task, así que se arregla
+aquí: el test se renombra a lo que de verdad comprueba y se añade otro que envía un JSON roto con
+`content-type: application/json` y un texto plano.
+
+```
+$ npm test -w apps/api -- attendance/freeze-adversarial.test
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+
+$ npx eslint apps/api/test/attendance/freeze-adversarial.test.ts
+(exit 0, sin salida)
+```
+
+- **Commit:** `test(api): really send a non-JSON body (review finding) [HU-02 TASK-06]`.

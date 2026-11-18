@@ -58,9 +58,27 @@ describe('congelación: casos adversariales (HU-02 TASK-06)', () => {
     expect(count()).toBe(0);
   });
 
-  it('EC-15: entradas hostiles: cuerpo no JSON, vacío o un array dan 400', async () => {
+  it('EC-15: cuerpos JSON hostiles (vacío, un array, números) dan 400', async () => {
     for (const payload of [{}, [], { start: 20261120, end: 20261122 }]) {
       const response = await create(payload);
+
+      expect(response.statusCode).toBe(400);
+      expect(response.json<{ error: { code: string } }>().error.code).toBe('VALIDATION_ERROR');
+    }
+    expect(count()).toBe(0);
+  });
+
+  it('EC-15: un cuerpo que no es JSON (con content-type JSON o de texto) da 400', async () => {
+    for (const [contentType, payload] of [
+      ['application/json', '{"start": "2026-11-20", "end": '],
+      ['text/plain', 'del 20 al 22 de noviembre'],
+    ]) {
+      const response = await app.inject({
+        method: 'POST',
+        url: '/api/members/1/freezes',
+        headers: { 'content-type': contentType },
+        payload,
+      });
 
       expect(response.statusCode).toBe(400);
       expect(response.json<{ error: { code: string } }>().error.code).toBe('VALIDATION_ERROR');
