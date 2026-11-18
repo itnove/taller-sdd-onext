@@ -51,7 +51,7 @@ Los flujos P, A1, A2 y E1 de UC-01 los cubrió HU-01; esta HU los mantiene (la r
 
 ## Progreso SDD
 - [x] PRD (`specs/PRD.md`): `/prd-writer`
-- [ ] Diseño técnico (`plans/TECHNICAL_DOC.md`): `/tech-design`
+- [x] Diseño técnico (`plans/TECHNICAL_DOC-backend.md`, `plans/TECHNICAL_DOC-frontend.md`): `/tech-design`
 - [ ] Tareas (`tasks/ROADMAP.md`): `/task-planner`
 - [ ] Implementación + integración: `/implementar-hu`
 - [ ] Review (`review/REVIEW.md`): `/reviewer`

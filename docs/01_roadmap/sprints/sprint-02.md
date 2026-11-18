@@ -25,7 +25,7 @@ Es la práctica del curso.
 ### HU-02 · Congelar mi racha · estado: en curso
 - **Origen:** FEAT-02 · **Depende de:** HU-01 (en `main`) · **Rama:** `hu/HU-02-congelar-racha`
 - [x] prd-writer
-- [ ] tech-design
+- [x] tech-design
 - [ ] task-planner
 - [ ] implementar-hu
 - [ ] reviewer
