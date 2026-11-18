@@ -19,3 +19,9 @@ Validadas por Nuria en el shaping de FEAT-01 (2026-11-16, respuestas R1-R6).
 - **RV-04 · Felicitación.** Un mensaje a partir de 7 días. Sin premios.
 - **RV-05 · Sin conexión.** El socio ve su última racha guardada con un aviso; el check-in sin conexión, más adelante.
 - **RV-06 · Rapidez.** La racha carga en menos de 300 ms.
+
+Validadas por Nuria en el shaping de FEAT-02 (2026-11-18, respuestas R1-R7).
+
+- **RV-07 · Congelar.** Hasta 7 días por año natural, en uno o varios rangos de días seguidos, desde hoy en adelante;
+  si un rango cruza de año, cada día cuenta en su año. Sin solapes. Ni suma ni rompe la racha; venir un día congelado
+  cuenta. Se cancela solo antes de empezar y los días vuelven al cupo. Sin motivo, aprobación ni avisos.
