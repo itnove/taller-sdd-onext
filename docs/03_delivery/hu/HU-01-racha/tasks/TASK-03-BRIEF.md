@@ -48,6 +48,19 @@
 > Lo no obvio y duradero, en un bloque `APRENDIZAJE` al final del informe.
 
 ## 7. Resultado de la integración
-> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: -.
+> La rellena `/implementar-hu` con la **salida real** de los comandos que ejecuta la sesión. Ciclo de arreglo: 0/2.
 
-_Pendiente de implementar._
+```
+$ npm test -w apps/web -- attendance
+ Test Files  3 passed (3)
+      Tests  16 passed (16)
+
+$ npm run typecheck
+(exit 0)
+
+$ npx eslint apps/web
+(exit 0, sin salida)
+```
+
+- **Resultado:** verde, sin ciclos de arreglo (0/2). Fuera de "Archivos afectados", el builder tocó `apps/web/test/App.test.tsx` y `apps/web/test/features/attendance/AttendanceScreen.test.tsx` (lo dijo en su informe): la pantalla ahora pide la racha y sus `mockFetch` necesitaban esa ruta.
+- **Commit:** el de esta task, `feat(web): streak panel [HU-01 TASK-03]`.

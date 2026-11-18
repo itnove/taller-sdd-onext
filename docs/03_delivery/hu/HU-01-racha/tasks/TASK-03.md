@@ -4,7 +4,7 @@
 - **HU:** HU-01 · **Feature:** FEAT-01
 - **Scope:** frontend
 - **Capa:** web: builder `web-builder`
-- **Estado:** Pendiente
+- **Estado:** Completada
 - **Complejidad:** M (1–2 h)
 
 ## Descripción
@@ -31,15 +31,15 @@
 - **Bloquea:** TASK-04, TASK-06
 
 ## Criterios de done
-- [ ] CA-03: 0 días → "Empieza tu racha hoy".
-- [ ] CA-04 y EC-07: la felicitación solo con `congratulate`.
-- [ ] EC-06: "120" con "días seguidos".
-- [ ] EC-12: una forma inesperada da error con reintento, sin número.
-- [ ] El panel se refresca tras el check-in.
-- [ ] `npm test -w apps/web -- attendance` en verde, con 3 fichero(s) de test.
-- [ ] `npm run typecheck` sin errores.
-- [ ] `npx eslint <ficheros tocados>` sin errores.
-- [ ] Commit único `feat(web): streak panel [HU-01 TASK-03]` nombrando los ficheros.
+- [x] CA-03: 0 días → "Empieza tu racha hoy".
+- [x] CA-04 y EC-07: la felicitación solo con `congratulate`.
+- [x] EC-06: "120" con "días seguidos".
+- [x] EC-12: una forma inesperada da error con reintento, sin número.
+- [x] El panel se refresca tras el check-in.
+- [x] `npm test -w apps/web -- attendance` en verde, con 3 fichero(s) de test.
+- [x] `npm run typecheck` sin errores.
+- [x] `npx eslint <ficheros tocados>` sin errores.
+- [x] Commit único `feat(web): streak panel [HU-01 TASK-03]` nombrando los ficheros.
 
 ## Notas de implementación
 - Ninguna.

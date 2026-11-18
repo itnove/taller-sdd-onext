@@ -3,6 +3,7 @@ import { userMessage } from '../../components/http.ts';
 import { ErrorMessage, LoadingMessage } from '../../components/StatusMessages.tsx';
 import { fetchMembers } from './api.ts';
 import { CheckInButton } from './CheckInButton.tsx';
+import { StreakPanel } from './StreakPanel.tsx';
 import type { Member } from './types.ts';
 
 type MembersState =
@@ -32,10 +33,11 @@ function useMembers(): [MembersState, () => void] {
   return [state, reload];
 }
 
-/** Pantalla del socio: elige su nombre y hace check-in (T-02). */
+/** Pantalla del socio: elige su nombre, ve su racha (HU-01) y hace check-in (T-02). */
 export function AttendanceScreen() {
   const [members, reload] = useMembers();
   const [selected, setSelected] = useState<number | null>(null);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   if (members.status === 'loading') return <LoadingMessage>Cargando socios…</LoadingMessage>;
   if (members.status === 'error')
@@ -57,7 +59,12 @@ export function AttendanceScreen() {
           </option>
         ))}
       </select>
-      <CheckInButton key={memberId} memberId={memberId} />
+      <StreakPanel key={memberId} memberId={memberId} refreshKey={refreshKey} />
+      <CheckInButton
+        key={`check-in-${memberId}`}
+        memberId={memberId}
+        onCheckedIn={() => setRefreshKey((n) => n + 1)}
+      />
     </section>
   );
 }
